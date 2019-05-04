@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import Apartment from '../apartment/apartment.jsx';
 
 const Main = (props) => {
@@ -107,6 +108,10 @@ const Main = (props) => {
       </main>
     </React.Fragment>
   );
+};
+
+Main.propTypes = {
+  apartments: PropTypes.array.isRequired
 };
 
 export default Main;

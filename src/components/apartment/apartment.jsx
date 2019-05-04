@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const Apartment = (props) => {
   const {apartment} = props;
@@ -37,6 +38,10 @@ const Apartment = (props) => {
       <p className="place-card__type">Apartment</p>
     </div>
   </article>);
+};
+
+Apartment.propTypes = {
+  apartment: PropTypes.string.isRequired
 };
 
 export default Apartment;
