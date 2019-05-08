@@ -16,8 +16,8 @@ it(`Click on title is correctly`, () => {
       />
   );
 
-  const titleButton = apartment.find(`.place-card__name a`);
-  titleButton.simulate(`click`);
+  const titleLink = apartment.find(`.place-card__name a`);
+  titleLink.simulate(`click`);
 
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
