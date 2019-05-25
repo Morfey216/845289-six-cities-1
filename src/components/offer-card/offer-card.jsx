@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 const OfferCard = (props) => {
-  const {title, type, image, price, rating, onTitleClick} = props;
+  const {title, type, image, price, rating, onTitleClick, onImageClick, onMouseOver, onMouseOut} = props;
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className="cities__place-card place-card"
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+    >
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <a href="#" onClick={onImageClick}>
           <img className="place-card__image" src={image} width="260" height="200" alt="Place image"/>
         </a>
       </div>
@@ -49,7 +53,10 @@ OfferCard.propTypes = {
   rating: PropTypes.number.isRequired,
   isBookmarked: PropTypes.bool,
   isPremium: PropTypes.bool,
-  onTitleClick: PropTypes.func
+  onTitleClick: PropTypes.func,
+  onImageClick: PropTypes.func,
+  onMouseOver: PropTypes.func,
+  onMouseOut: PropTypes.func,
 };
 
 export default OfferCard;
