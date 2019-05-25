@@ -46,8 +46,8 @@ OfferCard.propTypes = {
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
-  isBookmarked: PropTypes.bool.isRequired,
-  isPremium: PropTypes.bool.isRequired,
+  isBookmarked: PropTypes.bool,
+  isPremium: PropTypes.bool,
   onTitleClick: PropTypes.func
 };
 

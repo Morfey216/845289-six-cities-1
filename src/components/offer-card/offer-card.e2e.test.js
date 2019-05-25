@@ -10,9 +10,7 @@ const mock = {
   type: `Apartment`,
   image: `img/apartment-01.jpg`,
   price: 0,
-  rating: 100,
-  isBookmarked: false,
-  isPremium: true
+  rating: 100
 };
 
 it(`Click on title is correctly`, () => {
@@ -24,8 +22,6 @@ it(`Click on title is correctly`, () => {
         image={mock.image}
         price={mock.price}
         rating={mock.rating}
-        isBookmarked={mock.isBookmarked}
-        isPremium={mock.isPremium}
         onTitleClick={clickHandler}
       />
   );
