@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import Apartment from '../apartment/apartment';
+import OfferCard from '../offer-card/offer-card';
 
 const Main = (props) => {
   const {apartments} = props;
@@ -95,7 +95,7 @@ const Main = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
 
-                {apartments.map((it) => <Apartment key={it} apartmentTitle={it}/>)}
+                {apartments.map((it) => <OfferCard key={it} apartmentTitle={it}/>)}
 
               </div>
             </section>
