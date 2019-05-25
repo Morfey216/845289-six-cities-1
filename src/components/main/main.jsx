@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import OfferCard from '../offer-card/offer-card';
+import OffersList from '../offers-list/offers-list';
 
 const Main = (props) => {
-  const {apartments} = props;
+  const {offers} = props;
   return (
     <React.Fragment>
       <div style={{display: `none`}}>
@@ -93,11 +93,9 @@ const Main = (props) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
 
-                {apartments.map((it) => <OfferCard key={it} apartmentTitle={it}/>)}
+              <OffersList offers={offers}/>
 
-              </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -111,7 +109,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  apartments: PropTypes.array.isRequired
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default Main;
