@@ -1,21 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import mocks from './mocks/offers';
 
-const apartmentList = [
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`,
-  `Canal View Prinsengracht`,
-  `Nice, cozy, warm big bed apartment`
-];
-
-const init = (apartments) => {
+const init = (mocksData) => {
   ReactDOM.render(
       <App
-        titles = {apartments}
+        offers = {mocksData}
       />,
       document.querySelector(`#root`)
   );
 };
 
-init(apartmentList);
+init(mocks);

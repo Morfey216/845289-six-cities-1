@@ -4,7 +4,7 @@ import Main from './main';
 
 it(`Main correctly renders`, () => {
   const tree = renderer
-    .create(<Main apartments={[]}/>)
+    .create(<Main offers={[]}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
