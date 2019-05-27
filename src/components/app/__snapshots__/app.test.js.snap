@@ -267,6 +267,13 @@ Array [
         >
           <section
             className="cities__map map"
+            id="mapid"
+            style={
+              Object {
+                "height": 800,
+                "width": "100%",
+              }
+            }
           />
         </div>
       </div>
