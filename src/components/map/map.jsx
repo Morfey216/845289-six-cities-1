@@ -9,7 +9,7 @@ const PIN_HEIGHT = 39;
 
 class Map extends React.PureComponent {
   render() {
-    return <section className="cities__map map" id="map"/>;
+    return <section className="cities__map map" id="mapid" style={{width: `100%`, height: 800}}/>;
   }
 
   componentDidMount() {
@@ -17,7 +17,7 @@ class Map extends React.PureComponent {
   }
 
   _createMap() {
-    const map = leaflet.map(`map`, {
+    const map = leaflet.map(`mapid`, {
       center: START_COORDINATE,
       zoom: ZOOM,
       zoomControl: false,
