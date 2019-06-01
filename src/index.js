@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {reducer} from './reducer';
 import App from './components/app/app';
-import mocks from './mocks/offers';
+// import mocks from './mocks/offers';
 
-const init = (offersData) => {
+const init = () => {
+  const store = createStore(reducer);
   ReactDOM.render(
-      <App
-        offers = {offersData}
-      />,
+      <Provider store={store}>
+        <App/>
+      </Provider>,
       document.querySelector(`#root`)
   );
 };
 
-init(mocks);
+init();

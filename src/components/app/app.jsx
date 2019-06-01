@@ -1,16 +1,27 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import Main from '../main/main';
 
 const App = (props) => {
-  const {offers} = props;
+  const {currentCity, currentOffersData, citiesData} = props;
   return <Main
-    offers = {offers}
+    // offers = {offers}
+    offers = {currentOffersData}
   />;
 };
 
 App.propTypes = {
-  offers: PropTypes.array.isRequired
+  currentCity: PropTypes.string.isRequired,
+  currentOffersData: PropTypes.array.isRequired,
+  citiesData: PropTypes.array.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  currentCity: state.currentCity,
+  currentOffersData: state.currentOffersData,
+  citiesData: state.citiesData,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

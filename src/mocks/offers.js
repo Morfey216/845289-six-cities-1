@@ -39,8 +39,6 @@ const CITIES = [
   },
 ];
 
-const CURRENT_TEST_CITY = `Amsterdam`;
-
 const COORDINATES_KIT = [
   [52.3909553943508, 4.85309666406198],
   [52.3695553943508, 4.85309666406198],
@@ -56,7 +54,6 @@ const Price = {
   MAX_COST: 200
 };
 
-let mocksData = [];
 let currentId = 0;
 
 const getRandomInteger = (minNumber = 1, maxNumber = 100) => Math.floor(Math.random() * (maxNumber - minNumber)) + minNumber;
@@ -95,18 +92,15 @@ const getOffersList = (number, currentCity) => {
 };
 
 const initMockData = () => {
+  let mocksData = [];
   CITIES.forEach((currentCity) => {
     const offersCount = getRandomInteger(0, MAX_OFFERS_COUNT);
     mocksData = mocksData.concat(getOffersList(offersCount, currentCity));
   });
+  return mocksData;
 };
 
-const getFilteredOffersData = (city, offersData) => {
-  const offers = offersData.filter((offer) => offer.city.name === city);
-  return offers;
-};
+const offersDataKit = initMockData();
+console.log(offersDataKit);
 
-initMockData();
-const filteredMocksData = getFilteredOffersData(CURRENT_TEST_CITY, mocksData);
-
-export default filteredMocksData;
+export {offersDataKit, CITIES as citiesData};
