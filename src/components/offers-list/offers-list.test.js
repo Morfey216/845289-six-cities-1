@@ -4,6 +4,7 @@ import OffersList from './offers-list';
 
 const mock = [
   {
+    id: 0,
     title: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`,
     image: `img/apartment-01.jpg`,
@@ -11,6 +12,7 @@ const mock = [
     rating: 100
   },
   {
+    id: 1,
     title: `Wood and stone place`,
     type: `Private room`,
     image: `img/room.jpg`,
@@ -18,6 +20,7 @@ const mock = [
     rating: 80
   },
   {
+    id: 2,
     title: `Canal View Prinsengracht`,
     type: `Apartment`,
     image: `img/apartment-02.jpg`,
@@ -25,6 +28,7 @@ const mock = [
     rating: 60
   },
   {
+    id: 3,
     title: `Nice, cozy, warm big bed apartment`,
     type: `Apartment`,
     image: `img/apartment-03.jpg`,

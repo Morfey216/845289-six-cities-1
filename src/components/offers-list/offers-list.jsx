@@ -17,7 +17,7 @@ class OffersList extends React.PureComponent {
     return (
       <div className="cities__places-list places__list tabs__content">
         {offers.map((offer) => <OfferCard
-          key={offer.title}
+          key={offer.id}
           title={offer.title}
           type={offer.type}
           image={offer.image}
