@@ -7,7 +7,10 @@ import {getCurrentOffersData} from '../../reducer';
 const mockOffersData = [
   {
     id: 0,
-    city: `Paris`,
+    city: {
+      name: `Paris`,
+      coordinates: [52.38333, 4.9]
+    },
     title: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`,
     image: `img/apartment-01.jpg`,
@@ -19,7 +22,10 @@ const mockOffersData = [
   },
   {
     id: 1,
-    city: `Paris`,
+    city: {
+      name: `Paris`,
+      coordinates: [52.38333, 4.9]
+    },
     title: `Wood and stone place`,
     type: `Private room`,
     image: `img/apartment-02.jpg`,
@@ -31,7 +37,10 @@ const mockOffersData = [
   },
   {
     id: 2,
-    city: `Cologne`,
+    city: {
+      name: `Cologne`,
+      coordinates: [52.38333, 4.9]
+    },
     title: `Wood and stone place`,
     type: `Private room`,
     image: `img/apartment-03.jpg`,
