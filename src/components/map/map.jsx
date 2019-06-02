@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-const START_COORDINATE = [52.38333, 4.9];
 const ZOOM = 12;
 const PIN_WIDTH = 27;
 const PIN_HEIGHT = 39;
@@ -25,8 +24,9 @@ class Map extends React.PureComponent {
   }
 
   _createMap() {
+    const startCoordinate = this.props.offers[0].city.coordinates;
     this.map = leaflet.map(`mapid`, {
-      center: START_COORDINATE,
+      center: startCoordinate,
       zoom: ZOOM,
       zoomControl: false,
       marker: true
@@ -37,7 +37,7 @@ class Map extends React.PureComponent {
       iconSize: [PIN_WIDTH, PIN_HEIGHT]
     });
 
-    this.map.setView(START_COORDINATE, ZOOM);
+    this.map.setView(startCoordinate, ZOOM);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
