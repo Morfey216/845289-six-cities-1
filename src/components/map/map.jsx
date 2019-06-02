@@ -8,6 +8,7 @@ const PIN_WIDTH = 27;
 const PIN_HEIGHT = 39;
 
 class Map extends React.PureComponent {
+
   render() {
     return <section className="cities__map map" id="mapid" style={{width: `100%`, height: 800}}/>;
   }
@@ -16,8 +17,15 @@ class Map extends React.PureComponent {
     this._createMap();
   }
 
+  componentDidUpdate() {
+    if (this.map) {
+      this.map.remove();
+    }
+    this._createMap();
+  }
+
   _createMap() {
-    const map = leaflet.map(`mapid`, {
+    this.map = leaflet.map(`mapid`, {
       center: START_COORDINATE,
       zoom: ZOOM,
       zoomControl: false,
@@ -29,17 +37,18 @@ class Map extends React.PureComponent {
       iconSize: [PIN_WIDTH, PIN_HEIGHT]
     });
 
-    map.setView(START_COORDINATE, ZOOM);
+    this.map.setView(START_COORDINATE, ZOOM);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`})
-      .addTo(map);
+      .addTo(this.map);
 
     this.props.offers.forEach((offer) => {
-      leaflet.marker(offer.coordinates, {icon}).addTo(map);
+      leaflet.marker(offer.coordinates, {icon}).addTo(this.map);
     });
   }
+
 }
 
 Map.propTypes = {
