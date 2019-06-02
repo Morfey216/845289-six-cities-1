@@ -48,6 +48,7 @@ const COORDINATES_KIT = [
 ];
 
 const MAX_OFFERS_COUNT = 5;
+const HALF_NUMBER = 0.5;
 
 const Price = {
   MIN_COST: 50,
@@ -63,9 +64,7 @@ const getItem = (array) => {
   return array[randomItemIndex];
 };
 
-const getBooleanValue = () => {
-  return (getRandomInteger() > 50);
-};
+const generateLogicalValue = () => Math.random() > HALF_NUMBER;
 
 const getOffersList = (number, currentCity) => {
   const resultList = [];
@@ -75,12 +74,12 @@ const getOffersList = (number, currentCity) => {
       id: currentId,
       city: currentCity,
       title: getItem(TITLES),
-      type: getRandomInteger() > 50 ? `Apartment` : `Private room`,
+      type: generateLogicalValue() ? `Apartment` : `Private room`,
       image: getItem(IMAGES),
       price: getRandomInteger(Price.MIN_COST, Price.MAX_COST),
       rating: getRandomInteger(),
-      isBookmarked: getBooleanValue(),
-      isPremium: getBooleanValue(),
+      isBookmarked: generateLogicalValue(),
+      isPremium: generateLogicalValue(),
       coordinates: COORDINATES_KIT[resultList.length],
     };
 

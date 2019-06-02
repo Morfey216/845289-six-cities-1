@@ -5,9 +5,7 @@ import City from '../city/city';
 const CitiesList = (props) => {
   const {currentCity, citiesData, onCityClick} = props;
 
-  const verifyActiveCity = (city) => {
-    return city === currentCity;
-  };
+  const verifyActiveCity = (city) => city === currentCity;
 
   return (
     <section className="locations container">

@@ -25,6 +25,7 @@ class Map extends React.PureComponent {
 
   _createMap() {
     const startCoordinate = this.props.offers[0].city.coordinates;
+
     this.map = leaflet.map(`mapid`, {
       center: startCoordinate,
       zoom: ZOOM,
