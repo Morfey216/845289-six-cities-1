@@ -1,42 +1,104 @@
-export default [
+const TITLES = [
+  `Beautiful & luxurious apartment at great location`,
+  `Wood and stone place`,
+  `Canal View Prinsengracht`,
+  `Nice, cozy, warm big bed apartment`,
+];
+
+const IMAGES = [
+  `img/apartment-01.jpg`,
+  `img/apartment-02.jpg`,
+  `img/apartment-03.jpg`,
+  `img/room.jpg`,
+];
+
+const CITIES = [
   {
-    title: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`,
-    image: `img/apartment-01.jpg`,
-    price: 120,
-    rating: 93,
-    isBookmarked: false,
-    isPremium: true,
-    coordinates: [52.3909553943508, 4.85309666406198],
+    name: `Paris`,
+    coordinates: [52.38333, 4.9]
   },
   {
-    title: `Wood and stone place`,
-    type: `Private room`,
-    image: `img/room.jpg`,
-    price: 80,
-    rating: 80,
-    isBookmarked: true,
-    isPremium: false,
-    coordinates: [52.369553943508, 4.85309666406198],
+    name: `Cologne`,
+    coordinates: [52.38333, 4.9]
   },
   {
-    title: `Canal View Prinsengracht`,
-    type: `Apartment`,
-    image: `img/apartment-02.jpg`,
-    price: 132,
-    rating: 80,
-    isBookmarked: false,
-    isPremium: false,
-    coordinates: [52.3909553943508, 4.929309666406198],
+    name: `Brussels`,
+    coordinates: [52.38333, 4.9]
   },
   {
-    title: `Nice, cozy, warm big bed apartment`,
-    type: `Apartment`,
-    image: `img/apartment-03.jpg`,
-    price: 180,
-    rating: 100,
-    isBookmarked: false,
-    isPremium: true,
-    coordinates: [52.3809553943508, 4.939309666406198],
+    name: `Amsterdam`,
+    coordinates: [52.38333, 4.9]
+  },
+  {
+    name: `Hamburg`,
+    coordinates: [52.38333, 4.9]
+  },
+  {
+    name: `Dusseldorf`,
+    coordinates: [52.38333, 4.9]
   },
 ];
+
+const COORDINATES_KIT = [
+  [52.3909553943508, 4.85309666406198],
+  [52.3695553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198],
+  [52.3709553943508, 4.939309666406198],
+];
+
+const MAX_OFFERS_COUNT = 5;
+const HALF_NUMBER = 0.5;
+
+const Price = {
+  MIN_COST: 50,
+  MAX_COST: 200
+};
+
+let currentId = 0;
+
+const getRandomInteger = (minNumber = 1, maxNumber = 100) => Math.floor(Math.random() * (maxNumber - minNumber)) + minNumber;
+
+const getItem = (array) => {
+  const randomItemIndex = getRandomInteger(0, array.length);
+  return array[randomItemIndex];
+};
+
+const generateLogicalValue = () => Math.random() > HALF_NUMBER;
+
+const getOffersList = (number, currentCity) => {
+  const resultList = [];
+
+  while (resultList.length < number) {
+    const newItem = {
+      id: currentId,
+      city: currentCity,
+      title: getItem(TITLES),
+      type: generateLogicalValue() ? `Apartment` : `Private room`,
+      image: getItem(IMAGES),
+      price: getRandomInteger(Price.MIN_COST, Price.MAX_COST),
+      rating: getRandomInteger(),
+      isBookmarked: generateLogicalValue(),
+      isPremium: generateLogicalValue(),
+      coordinates: COORDINATES_KIT[resultList.length],
+    };
+
+    resultList.push(newItem);
+    currentId++;
+  }
+
+  return resultList;
+};
+
+const initMockData = () => {
+  let mocksData = [];
+  CITIES.forEach((currentCity) => {
+    const offersCount = getRandomInteger(0, MAX_OFFERS_COUNT);
+    mocksData = mocksData.concat(getOffersList(offersCount, currentCity));
+  });
+  return mocksData;
+};
+
+const offersDataKit = initMockData();
+
+export default offersDataKit;

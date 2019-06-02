@@ -3,6 +3,11 @@ import renderer from 'react-test-renderer';
 import Map from './map';
 
 const mock = [{
+  id: 0,
+  city: {
+    name: `City name`,
+    coordinates: [52.38333, 4.9]
+  },
   title: `Offer Title`,
   type: `Offer Type`,
   image: `Image Path`,

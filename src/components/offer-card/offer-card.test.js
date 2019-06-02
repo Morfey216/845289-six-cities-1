@@ -7,10 +7,12 @@ const mock = {
   type: `Apartment`,
   image: `img/apartment-01.jpg`,
   price: 0,
-  rating: 100
+  rating: 100,
+  isPremium: true,
+  isBookmarked: true
 };
 
-it(`Offer Card correctly renders`, () => {
+it(`Offer Card correctly renders with false markers`, () => {
   const tree = renderer
     .create(<OfferCard
       title={mock.title}
@@ -18,6 +20,24 @@ it(`Offer Card correctly renders`, () => {
       image={mock.image}
       price={mock.price}
       rating={mock.rating}
+      isPremium={!mock.isPremium}
+      isBookmarked={!mock.isBookmarked}
+    />)
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Offer Card correctly renders with true markers`, () => {
+  const tree = renderer
+    .create(<OfferCard
+      title={mock.title}
+      type={mock.type}
+      image={mock.image}
+      price={mock.price}
+      rating={mock.rating}
+      isPremium={mock.isPremium}
+      isBookmarked={mock.isBookmarked}
     />)
     .toJSON();
 

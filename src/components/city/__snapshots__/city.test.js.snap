@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`City correctly renders with false active city 1`] = `
+<li
+  className="locations__item"
+>
+  <a
+    className="locations__item-link tabs__item "
+    onClick={[Function]}
+  >
+    <span>
+      Amsterdam
+    </span>
+  </a>
+</li>
+`;
+
+exports[`City correctly renders with true active city 1`] = `
+<li
+  className="locations__item"
+>
+  <a
+    className="locations__item-link tabs__item tabs__item--active"
+    onClick={[Function]}
+  >
+    <span>
+      Amsterdam
+    </span>
+  </a>
+</li>
+`;
