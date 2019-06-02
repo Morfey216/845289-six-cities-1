@@ -9,13 +9,7 @@ exports[`Offers List correctly renders 1`] = `
     onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -53,7 +47,7 @@ exports[`Offers List correctly renders 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button button "
           type="button"
         >
           <svg
@@ -157,7 +151,7 @@ exports[`Offers List correctly renders 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button button place-card__bookmark-button--active"
           type="button"
         >
           <svg
@@ -172,7 +166,7 @@ exports[`Offers List correctly renders 1`] = `
           <span
             className="visually-hidden"
           >
-            To bookmarks
+            In bookmarks
           </span>
         </button>
       </div>
@@ -261,7 +255,7 @@ exports[`Offers List correctly renders 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button button "
           type="button"
         >
           <svg
@@ -321,13 +315,7 @@ exports[`Offers List correctly renders 1`] = `
     onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -365,7 +353,7 @@ exports[`Offers List correctly renders 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button button place-card__bookmark-button--active"
           type="button"
         >
           <svg
@@ -380,7 +368,7 @@ exports[`Offers List correctly renders 1`] = `
           <span
             className="visually-hidden"
           >
-            To bookmarks
+            In bookmarks
           </span>
         </button>
       </div>

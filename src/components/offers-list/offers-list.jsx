@@ -23,6 +23,8 @@ class OffersList extends React.PureComponent {
           image={offer.image}
           price={offer.price}
           rating={offer.rating}
+          isPremium={offer.isPremium}
+          isBookmarked={offer.isBookmarked}
           onMouseOver={() => {
             this.setState({activeOffer: offer});
           }}

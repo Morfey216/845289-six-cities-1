@@ -4,7 +4,6 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {reducer} from './reducer';
 import App from './components/app/app';
-// import mocks from './mocks/offers';
 
 const init = () => {
   const store = createStore(reducer);

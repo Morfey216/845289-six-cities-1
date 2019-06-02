@@ -9,7 +9,9 @@ const mock = [
     type: `Apartment`,
     image: `img/apartment-01.jpg`,
     price: 100,
-    rating: 100
+    rating: 100,
+    isPremium: false,
+    isBookmarked: false
   },
   {
     id: 1,
@@ -17,7 +19,9 @@ const mock = [
     type: `Private room`,
     image: `img/room.jpg`,
     price: 80,
-    rating: 80
+    rating: 80,
+    isPremium: true,
+    isBookmarked: true
   },
   {
     id: 2,
@@ -25,7 +29,9 @@ const mock = [
     type: `Apartment`,
     image: `img/apartment-02.jpg`,
     price: 60,
-    rating: 60
+    rating: 60,
+    isPremium: true,
+    isBookmarked: false
   },
   {
     id: 3,
@@ -33,7 +39,9 @@ const mock = [
     type: `Apartment`,
     image: `img/apartment-03.jpg`,
     price: 40,
-    rating: 40
+    rating: 40,
+    isPremium: false,
+    isBookmarked: true
   },
 ];
 
