@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer";
 import OffersList from '../offers-list/offers-list';
 import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
 
 const App = (props) => {
-  const {currentCity, currentOffersData} = props;
+  const {currentCity, citiesData, currentOffersData, onCityClick} = props;
 
   return (
     <React.Fragment>
@@ -43,7 +44,11 @@ const App = (props) => {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="cities tabs">
-          <CitiesList/>
+          <CitiesList
+            currentCity={currentCity}
+            citiesData={citiesData}
+            onCityClick={onCityClick}
+          />
         </div>
         <div className="cities__places-wrapper">
           <div className="cities__places-container container">
@@ -82,13 +87,24 @@ const App = (props) => {
 
 App.propTypes = {
   currentCity: PropTypes.string.isRequired,
+  citiesData: PropTypes.array.isRequired,
   currentOffersData: PropTypes.array.isRequired,
+  onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentCity: state.currentCity,
+  citiesData: state.citiesData,
   currentOffersData: state.currentOffersData,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+
+  onCityClick: (evt, activeCity) => {
+    dispatch(ActionCreator[`CHANGE_CURRENT_CITY`](activeCity));
+  },
+
+});
+
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
