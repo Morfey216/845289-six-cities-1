@@ -101,6 +101,5 @@ const initMockData = () => {
 };
 
 const offersDataKit = initMockData();
-console.log(offersDataKit);
 
-export {offersDataKit, CITIES as citiesData};
+export default offersDataKit;

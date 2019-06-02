@@ -1,16 +1,22 @@
-import {citiesData, offersDataKit} from './mocks/offers';
+import offersDataKit from './mocks/offers';
+
+const getCitiesData = (offersData) => {
+  const cities = new Set();
+  offersData.forEach((offer) => cities.add(offer.city));
+  return [...cities];
+};
 
 const getCurrentOffersData = (city, offersData) => {
   const offers = offersData.filter((offer) => offer.city.name === city);
-  console.log(city);
-  console.log(offers);
   return offers;
 };
 
+const citiesDataKit = getCitiesData(offersDataKit);
+
 const initialState = {
-  currentCity: citiesData[0].name,
-  currentOffersData: getCurrentOffersData(citiesData[0].name, offersDataKit),
-  citiesData
+  citiesData: citiesDataKit,
+  currentCity: citiesDataKit[0].name,
+  currentOffersData: getCurrentOffersData(citiesDataKit[0].name, offersDataKit),
 };
 
 const ActionCreator = {
@@ -24,7 +30,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case `CHANGE_CURRENT_CITY`: return Object.assign({}, state, {
       currentCity: action.payload,
-      currentOffersData: getCurrentOffersData(action.payload),
+      currentOffersData: getCurrentOffersData(action.payload, offersDataKit),
     });
   }
   return state;

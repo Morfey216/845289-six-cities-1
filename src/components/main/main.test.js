@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main';
+import {Main} from './main';
 
 it(`Main correctly renders`, () => {
   const mapSection = document.createElement(`section`);
@@ -8,7 +8,7 @@ it(`Main correctly renders`, () => {
   document.body.appendChild(mapSection);
 
   const tree = renderer
-    .create(<Main offers={[]}/>)
+    .create(<Main currentOffersData={[]}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import OffersList from '../offers-list/offers-list';
+import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
 
 const Main = (props) => {
-  const {offers} = props;
+  const {currentOffersData} = props;
+
   return (
     <React.Fragment>
       <div style={{display: `none`}}>
@@ -40,40 +43,8 @@ const Main = (props) => {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="cities tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section></div>
+          <CitiesList/>
+        </div>
         <div className="cities__places-wrapper">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -95,11 +66,11 @@ const Main = (props) => {
                 </ul>
               </form>
 
-              <OffersList offers={offers}/>
+              <OffersList offers={currentOffersData}/>
 
             </section>
             <div className="cities__right-section">
-              <Map offers={offers}/>
+              <Map offers={currentOffersData}/>
             </div>
           </div>
         </div>
@@ -110,7 +81,12 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired
+  currentOffersData: PropTypes.array.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  currentOffersData: state.currentOffersData,
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);
