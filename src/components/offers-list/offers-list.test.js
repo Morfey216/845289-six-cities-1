@@ -46,9 +46,11 @@ const mock = [
 ];
 
 it(`Offers List correctly renders`, () => {
+  const setActiveItem = jest.fn();
   const tree = renderer
     .create(<OffersList
       offers={mock}
+      setActiveItem={setActiveItem}
     />)
     .toJSON();
 

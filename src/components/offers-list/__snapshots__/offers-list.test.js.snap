@@ -6,8 +6,6 @@ exports[`Offers List correctly renders 1`] = `
 >
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     
     <div
@@ -104,8 +102,6 @@ exports[`Offers List correctly renders 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="place-card__mark"
@@ -208,8 +204,6 @@ exports[`Offers List correctly renders 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="place-card__mark"
@@ -312,8 +306,6 @@ exports[`Offers List correctly renders 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     
     <div

@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 const City = (props) => {
   const {cityName, isActive, onCityClick} = props;
 
-  const handlerCityClick = (evt) => {
-    onCityClick(evt, cityName);
+  const handlerCityClick = () => {
+    onCityClick(cityName);
   };
 
   return <li className="locations__item">

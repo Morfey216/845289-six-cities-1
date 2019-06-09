@@ -5,9 +5,11 @@ import {ActionCreator} from "../../reducer";
 import OffersList from '../offers-list/offers-list';
 import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
 const App = (props) => {
   const {currentCity, citiesData, currentOffersData, onCityClick} = props;
+  const OffersListWrapped = withActiveItem(OffersList);
 
   return (
     <React.Fragment>
@@ -71,7 +73,7 @@ const App = (props) => {
                 </ul>
               </form>
 
-              <OffersList offers={currentOffersData}/>
+              <OffersListWrapped offers={currentOffersData}/>
 
             </section>
             <div className="cities__right-section">
@@ -100,7 +102,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 
 const mapDispatchToProps = (dispatch) => ({
 
-  onCityClick: (evt, activeCity) => {
+  onCityClick: (activeCity) => {
     dispatch(ActionCreator[`CHANGE_CURRENT_CITY`](activeCity));
   },
 

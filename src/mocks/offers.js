@@ -65,6 +65,7 @@ const getItem = (array) => {
 };
 
 const generateLogicalValue = () => Math.random() > HALF_NUMBER;
+const generateType = () => generateLogicalValue() ? `Apartment` : `Private room`;
 
 const getOffersList = (number, currentCity) => {
   const resultList = [];
@@ -74,7 +75,7 @@ const getOffersList = (number, currentCity) => {
       id: currentId,
       city: currentCity,
       title: getItem(TITLES),
-      type: generateLogicalValue() ? `Apartment` : `Private room`,
+      type: generateType(),
       image: getItem(IMAGES),
       price: getRandomInteger(Price.MIN_COST, Price.MAX_COST),
       rating: getRandomInteger(),
