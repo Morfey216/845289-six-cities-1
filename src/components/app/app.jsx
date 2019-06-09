@@ -103,7 +103,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 const mapDispatchToProps = (dispatch) => ({
 
   onCityClick: (activeCity) => {
-    dispatch(ActionCreator[`CHANGE_CURRENT_CITY`](activeCity));
+    dispatch(ActionCreator.changeCurrentCity(activeCity));
   },
 
 });

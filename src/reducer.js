@@ -1,5 +1,10 @@
 import offersDataKit from './mocks/offers';
 
+const ActionType = {
+  CHANGE_CURRENT_CITY: `CHANGE_CURRENT_CITY`,
+  LOAD_OFFERS_DATA: `LOAD_OFFERS_DATA`,
+};
+
 const getCitiesData = (offersData) => {
   const cities = new Set();
   offersData.forEach((offer) => cities.add(offer.city));
@@ -20,17 +25,26 @@ const initialState = {
 };
 
 const ActionCreator = {
-  CHANGE_CURRENT_CITY: (currentCity) => ({
-    type: `CHANGE_CURRENT_CITY`,
+  changeCurrentCity: (currentCity) => ({
+    type: ActionType.CHANGE_CURRENT_CITY,
     payload: currentCity,
+  }),
+
+  loadOffersData: () => ({
+    type: ActionType.LOAD_OFFERS_DATA,
+    payload: offersDataKit,
   }),
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `CHANGE_CURRENT_CITY`: return Object.assign({}, state, {
+    case ActionType.CHANGE_CURRENT_CITY: return Object.assign({}, state, {
       currentCity: action.payload,
       currentOffersData: getCurrentOffersData(action.payload, offersDataKit),
+    });
+
+    case ActionType.LOAD_OFFERS_DATA: return Object.assign({}, state, {
+      offersDataKit: action.payload,
     });
   }
   return state;

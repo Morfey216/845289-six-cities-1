@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import {reducer} from './reducer';
+import {reducer, ActionCreator} from './reducer';
 import App from './components/app/app';
 
 const init = () => {
@@ -12,6 +12,9 @@ const init = () => {
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
   /* eslint-enable */
+
+  store.dispatch(ActionCreator.loadOffersData());
+
   ReactDOM.render(
       <Provider store={store}>
         <App/>
