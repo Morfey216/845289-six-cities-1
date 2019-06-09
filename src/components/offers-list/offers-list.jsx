@@ -16,8 +16,8 @@ const OffersList = (props) => {
         rating={offer.rating}
         isPremium={offer.isPremium}
         isBookmarked={offer.isBookmarked}
-        onMouseOver={() => setActiveItem(offer)}
-        onMouseOut={() => setActiveItem(null)}
+        onMouseOver={setActiveItem(offer)}
+        onMouseOut={setActiveItem(null)}
       />)}
     </div>
   );
