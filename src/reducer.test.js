@@ -1,5 +1,26 @@
-import {reducer, citiesDataKit, getCurrentOffersData, ActionCreator} from './reducer';
+import MockAdapter from "axios-mack-adapter";
+import api from "./api";
+import {reducer, citiesDataKit, getCurrentOffersData, ActionType, ActionCreator, Operation} from './reducer';
 import offersDataKit from './mocks/offers';
+
+it(`Shoul make a correct API call to /hotels`, () => {
+  const apiMock = new MockAdapter(api);
+  const dispatch = jest.fn();
+  const offersLoader = Operation.loadOffersData();
+
+  apiMock
+    .onGet(`/hotels`)
+    .reply(200, [{fake: true}]);
+
+  return offersLoader(dispatch)
+    .then(() => {
+      expect().toHaveBeenCalledTimes(1);
+      expect().toHaveBeenNthCalledWith(1, {
+        type: ActionType.LOAD_OFFERS_DATA,
+        payload: [{fake: true}],
+      });
+    });
+});
 
 it(`Reducer creates initialState correctly`, () => {
   expect(reducer(undefined, {})).toEqual({
@@ -11,7 +32,7 @@ it(`Reducer creates initialState correctly`, () => {
 
 it(`Reducer correctly returns new state after changes currentCity`, () => {
   expect(reducer(undefined, {
-    type: `CHANGE_CURRENT_CITY`,
+    type: ActionType.CHANGE_CURRENT_CITY,
     payload: citiesDataKit[citiesDataKit.length - 1].name,
   })).toEqual({
     citiesData: citiesDataKit,
@@ -21,8 +42,8 @@ it(`Reducer correctly returns new state after changes currentCity`, () => {
 });
 
 it(`ActionCreator correctly returns CHANGE_CURRENT_CITY action`, () => {
-  expect(ActionCreator[`CHANGE_CURRENT_CITY`](citiesDataKit[0].name)).toEqual({
-    type: `CHANGE_CURRENT_CITY`,
+  expect(ActionCreator.changeCurrentCity(citiesDataKit[0].name)).toEqual({
+    type: ActionType.CHANGE_CURRENT_CITY,
     payload: citiesDataKit[0].name,
   });
 });

@@ -77,7 +77,7 @@ const App = (props) => {
 
             </section>
             <div className="cities__right-section">
-              <Map offers={currentOffersData}/>
+              {/* <Map offers={currentOffersData}/> */}
             </div>
           </div>
         </div>

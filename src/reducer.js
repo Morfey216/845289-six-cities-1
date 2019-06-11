@@ -1,4 +1,5 @@
-import offersDataKit from './mocks/offers';
+// import offersDataKit from './mocks/offers';
+// import api from "./api";
 
 const ActionType = {
   CHANGE_CURRENT_CITY: `CHANGE_CURRENT_CITY`,
@@ -16,12 +17,13 @@ const getCurrentOffersData = (city, offersData) => {
   return offers;
 };
 
-const citiesDataKit = getCitiesData(offersDataKit);
+// const citiesDataKit = getCitiesData(offersDataKit);
 
 const initialState = {
-  citiesData: citiesDataKit,
-  currentCity: citiesDataKit[0].name,
-  currentOffersData: getCurrentOffersData(citiesDataKit[0].name, offersDataKit),
+  offersDataKit: [],
+  citiesData: [],
+  currentCity: ``,
+  currentOffersData: [],
 };
 
 const ActionCreator = {
@@ -30,10 +32,19 @@ const ActionCreator = {
     payload: currentCity,
   }),
 
-  loadOffersData: () => ({
+  loadOffersData: (offersDataKit) => ({
     type: ActionType.LOAD_OFFERS_DATA,
     payload: offersDataKit,
   }),
+};
+
+const Operation = {
+  loadOffersData: () => (dispatch, _getState, api) => {
+    return api.get(`/hotels`)
+      .then((responce) => {
+        dispatch(ActionCreator.loadOffersData(responce.data));
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -52,7 +63,9 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
+  Operation,
+  ActionType,
   getCurrentOffersData,
-  citiesDataKit,
+  // citiesDataKit,
   reducer,
 };
