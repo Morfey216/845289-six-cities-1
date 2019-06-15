@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer";
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {getCitiesData, getCurrentCity, getCurrentOffersData} from '../../reducer/data/selectors';
+import {ActionCreator} from '../../reducer/data/data';
 import OffersList from '../offers-list/offers-list';
 import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
@@ -95,9 +96,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  currentCity: state.currentCity,
-  citiesData: state.citiesData,
-  currentOffersData: state.currentOffersData,
+  currentCity: getCurrentCity(state),
+  citiesData: getCitiesData(state),
+  currentOffersData: getCurrentOffersData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

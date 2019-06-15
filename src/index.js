@@ -4,7 +4,8 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
-import {reducer, Operation} from './reducer';
+import combineReducers from './reducer/index';
+import {Operation} from './reducer/data/data';
 import configureAPI from './api';
 import App from './components/app/app';
 
@@ -12,7 +13,7 @@ const init = () => {
   const api = configureAPI((...args) => store.dispatch(...args));
   /* eslint-disable no-underscore-gangle */
   const store = createStore(
-      reducer,
+      combineReducers,
       compose(
           applyMiddleware(thunk.withExtraArgument(api)),
           window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

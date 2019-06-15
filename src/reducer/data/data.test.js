@@ -1,6 +1,7 @@
 import MockAdapter from 'axios-mack-adapter';
 import configureAPI from './api';
-import {ActionType, Operation} from './reducer';
+import {Operation, ActionType} from './reducer/data/data';
+import {StatusCode} from '../../../constants';
 
 it(`Shoul make a correct API call to /hotels`, () => {
   const dispatch = jest.fn();
@@ -10,7 +11,7 @@ it(`Shoul make a correct API call to /hotels`, () => {
 
   apiMock
     .onGet(`/hotels`)
-    .reply(200, [{fake: true}]);
+    .reply(StatusCode.OK, [{fake: true}]);
 
   return offersLoader(dispatch, jest.fn(), api)
     .then(() => {

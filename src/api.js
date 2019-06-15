@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {ActionCreator} from './reducer';
+import {ActionCreator} from './reducer/user/user';
+import {StatusCode} from './constants';
 
 const TIMEOUT = 5000;
 
@@ -13,7 +14,7 @@ const configureAPI = (dispatch) => {
   const onSuccess = (responce) => responce;
 
   const onFail = (err) => {
-    if (err.responce.status === 403) {
+    if (err.responce.status === StatusCode.FORBIDDEN) {
       dispatch(ActionCreator.requireAuthorization(true));
     }
   };
