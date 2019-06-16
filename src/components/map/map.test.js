@@ -1,19 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Map from './map';
+import {Map} from './map';
 
 const mock = [{
   id: 0,
   city: {
     name: `City name`,
-    coordinates: [52.38333, 4.9]
+    location: [52.38333, 4.9]
   },
   title: `Offer Title`,
   type: `Offer Type`,
   image: `Image Path`,
   price: 0,
   rating: 100,
-  coordinates: [52.3909553943508, 4.85309666406198],
+  location: [52.3909553943508, 4.85309666406198],
 }];
 
 it(`Map correctly renders`, () => {
@@ -22,7 +22,7 @@ it(`Map correctly renders`, () => {
   document.body.appendChild(mapSection);
 
   const tree = renderer
-      .create(<Map offers={mock}/>)
+      .create(<Map currentOffersData={mock}/>)
       .toJSON();
 
   expect(tree).toMatchSnapshot();

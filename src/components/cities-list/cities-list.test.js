@@ -5,33 +5,33 @@ import CitiesList from './cities-list';
 const citiesData = [
   {
     name: `Paris`,
-    coordinates: []
+    location: {}
   },
   {
     name: `Cologne`,
-    coordinates: []
+    location: {}
   },
   {
     name: `Brussels`,
-    coordinates: []
+    location: {}
   },
   {
     name: `Amsterdam`,
-    coordinates: []
+    location: {}
   },
   {
     name: `Hamburg`,
-    coordinates: []
+    location: {}
   },
   {
     name: `Dusseldorf`,
-    coordinates: []
+    location: {}
   },
 ];
 
-const currentCity = `Amsterdam`;
+const currentCityIndex = 3;
 const onCityClick = jest.fn();
-const mock = {currentCity, citiesData, onCityClick};
+const mock = {currentCityIndex, citiesData, onCityClick};
 
 it(`Cities List correctly renders`, () => {
   const tree = renderer

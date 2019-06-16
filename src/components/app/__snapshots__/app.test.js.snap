@@ -155,9 +155,7 @@ Array [
           <b
             className="places__found"
           >
-            2
-             places to stay in 
-            Paris
+            2 places to stay in Paris
           </b>
           <form
             action="#"
@@ -419,16 +417,7 @@ Array [
         <div
           className="cities__right-section"
         >
-          <section
-            className="cities__map map"
-            id="mapid"
-            style={
-              Object {
-                "height": 800,
-                "width": "100%",
-              }
-            }
-          />
+          <Map />
         </div>
       </div>
     </div>
