@@ -11,11 +11,11 @@ const OffersList = (props) => {
         key={offer.id}
         title={offer.title}
         type={offer.type}
-        image={offer.image}
+        image={offer[`preview_image`]}
         price={offer.price}
         rating={offer.rating}
-        isPremium={offer.isPremium}
-        isBookmarked={offer.isBookmarked}
+        isPremium={offer[`is_premium`]}
+        isBookmarked={offer[`is_favorite`]}
         onMouseOver={setActiveItem(offer)}
         onMouseOut={setActiveItem(null)}
       />)}

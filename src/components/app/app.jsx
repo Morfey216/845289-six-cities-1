@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getCitiesData, getCurrentCity, getCurrentOffersData} from '../../reducer/data/selectors';
+import {getCitiesData, getCurrentCityIndex, getCurrentOffersData} from '../../reducer/data/selectors';
 import {ActionCreator} from '../../reducer/data/data';
 import OffersList from '../offers-list/offers-list';
 import CitiesList from '../cities-list/cities-list';
@@ -9,7 +9,7 @@ import Map from '../map/map';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
 const App = (props) => {
-  const {currentCity, citiesData, currentOffersData, onCityClick} = props;
+  const {currentCityIndex, citiesData, currentOffersData, onCityClick} = props;
   const OffersListWrapped = withActiveItem(OffersList);
 
   return (
@@ -48,7 +48,7 @@ const App = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="cities tabs">
           <CitiesList
-            currentCity={currentCity}
+            currentCityIndex={currentCityIndex}
             citiesData={citiesData}
             onCityClick={onCityClick}
           />
@@ -57,7 +57,7 @@ const App = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{currentOffersData.length} places to stay in {currentCity}</b>
+              <b className="places__found">{`${currentOffersData.length} places to stay in ${citiesData[currentCityIndex] !== undefined ? citiesData[currentCityIndex].name : ``}`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -78,7 +78,7 @@ const App = (props) => {
 
             </section>
             <div className="cities__right-section">
-              {/* <Map offers={currentOffersData}/> */}
+              <Map />
             </div>
           </div>
         </div>
@@ -89,22 +89,22 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  currentCity: PropTypes.string.isRequired,
+  currentCityIndex: PropTypes.number.isRequired,
   citiesData: PropTypes.array.isRequired,
   currentOffersData: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  currentCity: getCurrentCity(state),
+  currentCityIndex: getCurrentCityIndex(state),
   citiesData: getCitiesData(state),
   currentOffersData: getCurrentOffersData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
 
-  onCityClick: (activeCity) => {
-    dispatch(ActionCreator.changeCurrentCity(activeCity));
+  onCityClick: (activeCityIndex) => {
+    dispatch(ActionCreator.changeCurrentCity(activeCityIndex));
   },
 
 });

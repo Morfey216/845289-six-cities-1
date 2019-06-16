@@ -4,30 +4,34 @@ import NameSpace from '../name-spaces';
 const NAME_SPACE = NameSpace.DATA;
 
 export const getOffersDataKit = (state) => {
-  console.log(state);
-  console.log(state[NAME_SPACE].offersDataKit);
   return state[NAME_SPACE].offersDataKit;
 };
 
-export const getCurrentCity = (state) => {
-  return state[NAME_SPACE].currentCity;
+export const getCurrentCityIndex = (state) => {
+  return state[NAME_SPACE].currentCityIndex;
 };
 
 export const getCitiesData = createSelector(
     getOffersDataKit,
     (offersData) => {
-      const cities = new Set();
-      offersData.forEach((offer) => cities.add(offer.city));
-      return [...cities];
+      const citiesData = [];
+      offersData.forEach((offer) => {
+        if (!citiesData.find((city) => city.name === offer.city.name)) {
+          citiesData.push(offer.city);
+        }
+      });
+      return citiesData;
     }
 );
 
 export const getCurrentOffersData = createSelector(
-    getCurrentCity,
+    getCurrentCityIndex,
+    getCitiesData,
     getOffersDataKit,
-    (city, offersData) => {
-      const offers = offersData.filter((offer) => offer.city.name === city);
-      console.log(offers);
+    (currentCityIndex, citiesData, offersData) => {
+      const offers = offersData.filter((offer) => offer.city.name === citiesData[currentCityIndex].name);
+
+      // console.log(currentCityIndex, citiesData, offersData, offers);
       return offers;
     }
 );

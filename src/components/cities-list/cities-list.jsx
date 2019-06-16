@@ -3,9 +3,14 @@ import PropTypes from "prop-types";
 import City from '../city/city';
 
 const CitiesList = (props) => {
-  const {currentCity, citiesData, onCityClick} = props;
+  const {currentCityIndex, citiesData, onCityClick} = props;
 
-  const verifyActiveCity = (city) => city === currentCity;
+  const verifyActiveCity = (cityIndex) => cityIndex === currentCityIndex;
+
+  const handlerChangeCity = (cityName) => {
+    const activeCityIndex = citiesData.findIndex((cityData) => cityData.name === cityName);
+    onCityClick(activeCityIndex);
+  };
 
   return (
     <section className="locations container">
@@ -13,8 +18,8 @@ const CitiesList = (props) => {
         {citiesData.map((cityData, index) => <City
           key={`city-${index}`}
           cityName={cityData.name}
-          isActive={verifyActiveCity(cityData.name)}
-          onCityClick={onCityClick}
+          isActive={verifyActiveCity(index)}
+          onCityClick={handlerChangeCity}
         />)}
       </ul>
     </section>
@@ -22,7 +27,7 @@ const CitiesList = (props) => {
 };
 
 CitiesList.propTypes = {
-  currentCity: PropTypes.string.isRequired,
+  currentCityIndex: PropTypes.number.isRequired,
   citiesData: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
 };

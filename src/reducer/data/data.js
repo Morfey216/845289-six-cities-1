@@ -5,8 +5,7 @@ const ActionType = {
 
 const initialState = {
   offersDataKit: [],
-  citiesData: [],
-  currentCity: ``,
+  currentCityIndex: 0,
 };
 
 const ActionCreator = {
@@ -14,9 +13,9 @@ const ActionCreator = {
     type: ActionType.LOAD_OFFERS_DATA,
     payload: offersDataKit,
   }),
-  changeCurrentCity: (currentCity) => ({
+  changeCurrentCity: (currentCityIndex) => ({
     type: ActionType.CHANGE_CURRENT_CITY,
-    payload: currentCity,
+    payload: currentCityIndex,
   }),
 };
 
@@ -29,21 +28,13 @@ const Operation = {
   },
 };
 
-const createCitiesData = (offersData) => {
-  const cities = new Set();
-  offersData.forEach((offer) => cities.add(offer.city.name));
-  return [...cities];
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS_DATA: return Object.assign({}, state, {
       offersDataKit: action.payload,
-      citiesData: createCitiesData(action.payload),
-      // currentCity: getCitiesData[0].name,
     });
     case ActionType.CHANGE_CURRENT_CITY: return Object.assign({}, state, {
-      currentCity: action.payload,
+      currentCityIndex: action.payload,
     });
   }
   return state;

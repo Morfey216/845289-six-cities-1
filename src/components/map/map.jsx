@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
+import {connect} from 'react-redux';
+import {getCurrentOffersData} from '../../reducer/data/selectors';
 
 const ZOOM = 12;
 const PIN_WIDTH = 27;
@@ -13,18 +15,27 @@ class Map extends React.PureComponent {
   }
 
   componentDidMount() {
-    this._createMap();
+    try {
+      this._createMap();
+    } catch (err) {
+      //
+    }
   }
 
   componentDidUpdate() {
-    if (this.map) {
-      this.map.remove();
+    try {
+      if (this.map) {
+        this.map.remove();
+      }
+      this._createMap();
+    } catch (err) {
+      //
     }
-    this._createMap();
   }
 
   _createMap() {
-    const startCoordinate = this.props.offers[0].city.coordinates;
+    const currentCityData = this.props.currentOffersData[0].city;
+    const startCoordinate = [currentCityData.location.latitude, currentCityData.location.longitude];
 
     this.map = leaflet.map(`mapid`, {
       center: startCoordinate,
@@ -45,15 +56,24 @@ class Map extends React.PureComponent {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`})
       .addTo(this.map);
 
-    this.props.offers.forEach((offer) => {
-      leaflet.marker(offer.coordinates, {icon}).addTo(this.map);
+    this.props.currentOffersData.forEach((offer) => {
+      const offerLocation = [
+        offer.location.latitude,
+        offer.location.longitude,
+      ];
+      leaflet.marker(offerLocation, {icon}).addTo(this.map);
     });
   }
 
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired
+  currentOffersData: PropTypes.array.isRequired,
 };
 
-export default Map;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  currentOffersData: getCurrentOffersData(state),
+});
+
+export {Map};
+export default connect(mapStateToProps)(Map);
