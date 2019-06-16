@@ -4,44 +4,44 @@ import OffersList from './offers-list';
 
 const mock = [
   {
-    id: 0,
-    title: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`,
-    image: `img/apartment-01.jpg`,
-    price: 100,
-    rating: 100,
-    isPremium: false,
-    isBookmarked: false
+    'id': 0,
+    'title': `Beautiful & luxurious apartment at great location`,
+    'type': `Apartment`,
+    'preview_image': `img/apartment-01.jpg`,
+    'price': 100,
+    'rating': 10,
+    'is_premium': false,
+    'isBookmarked': false
   },
   {
-    id: 1,
-    title: `Wood and stone place`,
-    type: `Private room`,
-    image: `img/room.jpg`,
-    price: 80,
-    rating: 80,
-    isPremium: true,
-    isBookmarked: true
+    'id': 1,
+    'title': `Wood and stone place`,
+    'type': `Private room`,
+    'preview_image': `img/room.jpg`,
+    'price': 80,
+    'rating': 8,
+    'is_premium': true,
+    'isBookmarked': true
   },
   {
-    id: 2,
-    title: `Canal View Prinsengracht`,
-    type: `Apartment`,
-    image: `img/apartment-02.jpg`,
-    price: 60,
-    rating: 60,
-    isPremium: true,
-    isBookmarked: false
+    'id': 2,
+    'title': `Canal View Prinsengracht`,
+    'type': `Apartment`,
+    'preview_image': `img/apartment-02.jpg`,
+    'price': 60,
+    'rating': 6,
+    'is_premium': true,
+    'isBookmarked': false
   },
   {
-    id: 3,
-    title: `Nice, cozy, warm big bed apartment`,
-    type: `Apartment`,
-    image: `img/apartment-03.jpg`,
-    price: 40,
-    rating: 40,
-    isPremium: false,
-    isBookmarked: true
+    'id': 3,
+    'title': `Nice, cozy, warm big bed apartment`,
+    'type': `Apartment`,
+    'preview_image': `img/apartment-03.jpg`,
+    'price': 40,
+    'rating': 4,
+    'is_premium': false,
+    'isBookmarked': true
   },
 ];
 
