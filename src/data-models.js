@@ -11,7 +11,14 @@ export const userDataModel = (data) => {
 export const offersDataModel = (data) => {
   return {
     id: data.id,
-    city: data.city,
+    city: {
+      name: data.city.name,
+      location: {
+        latitude: data.city.location.latitude,
+        longitude: data.city.location.longitude,
+        zoom: data.city.location.zoom
+      }
+    },
     previewImage: data[`preview_image`],
     images: data.images,
     title: data.title,
@@ -23,8 +30,17 @@ export const offersDataModel = (data) => {
     maxAdults: data[`max_adults`],
     price: data.price,
     goods: data.goods,
-    host: userDataModel(data),
+    host: {
+      id: data.host.id,
+      isPro: data.host[`is_pro`],
+      name: data.host.name,
+      avatarUrl: data.host[`avatar_url`]
+    },
     description: data.description,
-    location: data.location
+    location: {
+      latitude: data.location.latitude,
+      longitude: data.location.longitude,
+      zoom: data.location.zoom
+    }
   };
 };
