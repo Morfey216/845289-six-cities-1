@@ -3,7 +3,7 @@ import {ActionType, ActionCreator, reducer} from './user';
 it(`Reducer creates initialState correctly`, () => {
   expect(reducer(undefined, {})).toEqual({
     userData: {},
-    isAuthorizationRequired: false,
+    isAuthorizationRequired: true,
   });
 });
 

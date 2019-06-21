@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {App} from './app';
+import {Main} from './main';
 
 jest.mock(`../map/map`, () => `Map`);
 
@@ -55,9 +55,9 @@ const mock = {
   currentOffersData: mockOffersData,
 };
 
-it(`App correctly renders`, () => {
+it(`Main correctly renders`, () => {
   const tree = renderer
-    .create(<App
+    .create(<Main
       currentCityIndex={mock.currentCityIndex}
       citiesData={mock.citiesData}
       currentOffersData={mock.currentOffersData}

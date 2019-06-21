@@ -14,6 +14,8 @@ const configureAPI = (dispatch) => {
   const onSuccess = (responce) => responce;
 
   const onFail = (err) => {
+
+    dispatch(ActionCreator.requireAuthorization(true));
     if (err.responce.status === StatusCode.FORBIDDEN) {
       dispatch(ActionCreator.requireAuthorization(true));
     }

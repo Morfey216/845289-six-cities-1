@@ -7,7 +7,7 @@ const ActionType = {
 };
 
 const initialState = {
-  isAuthorizationRequired: false,
+  isAuthorizationRequired: true,
   userData: {},
 };
 
