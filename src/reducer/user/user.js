@@ -1,9 +1,14 @@
+import {StatusCode} from '../../constants';
+import {userDataModel} from "../../data-models";
+
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  USER_LOGIN: `USER_LOGIN`,
 };
 
 const initialState = {
-  isAuthorizationRequired: false,
+  isAuthorizationRequired: true,
+  userData: {},
 };
 
 const ActionCreator = {
@@ -13,6 +18,24 @@ const ActionCreator = {
       payload: status,
     };
   },
+  userLogin: (userData) => {
+    return {
+      type: ActionType.USER_LOGIN,
+      payload: userData,
+    };
+  },
+};
+
+const Operation = {
+  userLogin: (authorizationData) => (dispatch, _getState, api) => {
+    return api.post(`/login`, authorizationData)
+      .then((response) => {
+        if (response.status === StatusCode.OK) {
+          const userData = userDataModel(response.data);
+          dispatch(ActionCreator.userLogin(userData));
+        }
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +43,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         isAuthorizationRequired: action.payload,
+      });
+    case ActionType.USER_LOGIN:
+      return Object.assign({}, state, {
+        isAuthorizationRequired: false,
+        userData: action.payload,
       });
   }
 
@@ -29,5 +57,6 @@ const reducer = (state = initialState, action) => {
 export {
   ActionCreator,
   ActionType,
+  Operation,
   reducer,
 };

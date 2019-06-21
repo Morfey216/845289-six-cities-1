@@ -1,3 +1,5 @@
+import {offersDataModel} from "../../data-models";
+
 const ActionType = {
   LOAD_OFFERS_DATA: `LOAD_OFFERS_DATA`,
   CHANGE_CURRENT_CITY: `CHANGE_CURRENT_CITY`,
@@ -22,8 +24,9 @@ const ActionCreator = {
 const Operation = {
   loadOffersData: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
-      .then((responce) => {
-        dispatch(ActionCreator.loadOffersData(responce.data));
+      .then((response) => {
+        const offersData = response.data.map((itData) => offersDataModel(itData));
+        dispatch(ActionCreator.loadOffersData(offersData));
       });
   },
 };
