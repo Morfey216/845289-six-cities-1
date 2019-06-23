@@ -27,12 +27,13 @@ const ActionCreator = {
 };
 
 const Operation = {
-  userLogin: (authorizationData) => (dispatch, _getState, api) => {
+  userLogin: (authorizationData, makeTransition) => (dispatch, _getState, api) => {
     return api.post(`/login`, authorizationData)
       .then((response) => {
         if (response.status === StatusCode.OK) {
           const userData = userDataModel(response.data);
           dispatch(ActionCreator.userLogin(userData));
+          makeTransition();
         }
       });
   },
