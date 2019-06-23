@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 
 import {Main} from './main';
 
+jest.mock(`../header/header`, () => `Header`);
 jest.mock(`../map/map`, () => `Map`);
 
 const mockOffersData = [

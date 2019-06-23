@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import {SignIn} from './sign-in';
 
-// jest.mock(`../map/map`, () => `Map`);
+jest.mock(`../header/header`, () => `Header`);
 
 it(`SignIn correctly renders`, () => {
   const tree = renderer
