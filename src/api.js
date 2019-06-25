@@ -1,12 +1,11 @@
 import axios from 'axios';
-import {ActionCreator} from './reducer/user/user';
-import {StatusCode} from './constants';
+import {BASE_URL, StatusCode} from './constants';
 
 const TIMEOUT = 5000;
 
-const configureAPI = (dispatch) => {
+const configureAPI = () => {
   const api = axios.create({
-    baseURL: `https://es31-server.appspot.com/six-cities`,
+    baseURL: BASE_URL,
     timeout: TIMEOUT,
     withCredentials: true,
   });
@@ -14,10 +13,8 @@ const configureAPI = (dispatch) => {
   const onSuccess = (responce) => responce;
 
   const onFail = (err) => {
-
-    dispatch(ActionCreator.requireAuthorization(true));
     if (err.responce.status === StatusCode.FORBIDDEN) {
-      dispatch(ActionCreator.requireAuthorization(true));
+      history.pushState(null, null, `/login`);
     }
   };
 

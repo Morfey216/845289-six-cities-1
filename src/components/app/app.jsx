@@ -1,25 +1,17 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {Switch, Route} from 'react-router-dom';
 import Main from "../main/main";
 import SignIn from "../sign-in/sign-in";
-import {getAuthorizationRequired} from '../../reducer/user/selectors';
+import Favorites from "../favorites/favorites";
+import withAuthorization from "../../hocs/with-authorization/with-authorization";
 
-const App = (props) => {
-  const {isAuthorizationRequired} = props;
 
-  return <React.Fragment>
-    {isAuthorizationRequired ? <SignIn/> : <Main/>};
-  </React.Fragment>;
+const App = () => {
+  return <Switch>
+    <Route path="/" exact component={Main} />
+    <Route path="/login" component={SignIn} />
+    <Route path="/favorites" component={withAuthorization(Favorites)} />
+  </Switch>;
 };
 
-App.propTypes = {
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  isAuthorizationRequired: getAuthorizationRequired(state),
-});
-
-export {App};
-export default connect(mapStateToProps)(App);
+export default App;
