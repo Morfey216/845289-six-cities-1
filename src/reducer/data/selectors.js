@@ -38,3 +38,7 @@ export const getCurrentOffersData = createSelector(
 export const getActiveOffer = (state) => {
   return state[NAME_SPACE].activeOffer;
 };
+
+export const getReviewsData = (state) => {
+  return state[NAME_SPACE].reviewsData;
+};

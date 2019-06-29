@@ -1,6 +1,7 @@
 export const StatusCode = {
   OK: 200,
   FORBIDDEN: 403,
+  BAD_REQUEST: 400,
 };
 
 export const BASE_URL = `https://es31-server.appspot.com/six-cities`;
