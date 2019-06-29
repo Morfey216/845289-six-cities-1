@@ -1,8 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import OfferCard from './offer-card';
+import {MemoryRouter} from 'react-router-dom';
 
 const mock = {
+  'id': 5,
   'title': `Beautiful & luxurious apartment at great location`,
   'type': `Apartment`,
   'preview_image': `img/apartment-01.jpg`,
@@ -15,15 +17,21 @@ const mock = {
 
 it(`Offer Card correctly renders with false markers`, () => {
   const tree = renderer
-    .create(<OfferCard
-      title={mock.title}
-      type={mock.type}
-      image={mock[`preview_image`]}
-      price={mock.price}
-      rating={mock.rating}
-      isPremium={!mock[`is_premium`]}
-      isBookmarked={!mock[`isBookmarked`]}
-    />)
+    .create(
+        <MemoryRouter>
+          <OfferCard
+            id={mock.id}
+            title={mock.title}
+            type={mock.type}
+            image={mock[`preview_image`]}
+            price={mock.price}
+            rating={mock.rating}
+            isPremium={!mock[`is_premium`]}
+            isBookmarked={!mock[`isBookmarked`]}
+            onTitleClick={jest.fn()}
+          />
+        </MemoryRouter>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -31,15 +39,20 @@ it(`Offer Card correctly renders with false markers`, () => {
 
 it(`Offer Card correctly renders with true markers`, () => {
   const tree = renderer
-    .create(<OfferCard
-      title={mock.title}
-      type={mock.type}
-      image={mock[`preview_image`]}
-      price={mock.price}
-      rating={mock.rating}
-      isPremium={mock[`is_premium`]}
-      isBookmarked={mock[`isBookmarked`]}
-    />)
+    .create(
+        <MemoryRouter>
+          <OfferCard
+            id={mock.id}
+            title={mock.title}
+            type={mock.type}
+            image={mock[`preview_image`]}
+            price={mock.price}
+            rating={mock.rating}
+            isPremium={mock[`is_premium`]}
+            isBookmarked={mock[`isBookmarked`]}
+            onTitleClick={jest.fn()}
+          />
+        </MemoryRouter>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

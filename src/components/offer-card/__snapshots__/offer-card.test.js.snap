@@ -85,7 +85,8 @@ exports[`Offer Card correctly renders with false markers 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/5"
+        onClick={[Function]}
       >
         Beautiful & luxurious apartment at great location
       </a>
@@ -190,7 +191,8 @@ exports[`Offer Card correctly renders with true markers 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/5"
+        onClick={[Function]}
       >
         Beautiful & luxurious apartment at great location
       </a>

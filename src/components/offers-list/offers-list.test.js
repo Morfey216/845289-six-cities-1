@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import OffersList from './offers-list';
+import {OffersList} from './offers-list';
+import {MemoryRouter} from 'react-router-dom';
 
 const mock = [
   {
@@ -47,11 +48,17 @@ const mock = [
 
 it(`Offers List correctly renders`, () => {
   const setActiveItem = jest.fn();
+  const setActiveOffer = jest.fn();
   const tree = renderer
-    .create(<OffersList
-      offers={mock}
-      setActiveItem={setActiveItem}
-    />)
+    .create(
+        <MemoryRouter>
+          <OffersList
+            offers={mock}
+            setActiveItem={setActiveItem}
+            setActiveOffer={setActiveOffer}
+          />
+        </MemoryRouter>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

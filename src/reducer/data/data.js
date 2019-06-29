@@ -3,11 +3,13 @@ import {offersDataModel} from "../../data-models";
 const ActionType = {
   LOAD_OFFERS_DATA: `LOAD_OFFERS_DATA`,
   CHANGE_CURRENT_CITY: `CHANGE_CURRENT_CITY`,
+  CHANGE_ACTIVE_OFFER: `CHANGE_ACTIVE_OFFER`,
 };
 
 const initialState = {
   offersDataKit: [],
   currentCityIndex: 0,
+  activeOffer: null,
 };
 
 const ActionCreator = {
@@ -18,6 +20,10 @@ const ActionCreator = {
   changeCurrentCity: (currentCityIndex) => ({
     type: ActionType.CHANGE_CURRENT_CITY,
     payload: currentCityIndex,
+  }),
+  changeActiveOffer: (offer) => ({
+    type: ActionType.CHANGE_ACTIVE_OFFER,
+    payload: offer,
   }),
 };
 
@@ -33,12 +39,18 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.LOAD_OFFERS_DATA: return Object.assign({}, state, {
-      offersDataKit: action.payload,
-    });
-    case ActionType.CHANGE_CURRENT_CITY: return Object.assign({}, state, {
-      currentCityIndex: action.payload,
-    });
+    case ActionType.LOAD_OFFERS_DATA:
+      return Object.assign({}, state, {
+        offersDataKit: action.payload,
+      });
+    case ActionType.CHANGE_CURRENT_CITY:
+      return Object.assign({}, state, {
+        currentCityIndex: action.payload,
+      });
+    case ActionType.CHANGE_ACTIVE_OFFER:
+      return Object.assign({}, state, {
+        activeOffer: action.payload,
+      });
   }
   return state;
 };

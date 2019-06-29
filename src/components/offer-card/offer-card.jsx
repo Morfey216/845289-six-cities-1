@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
-
-const RATING_MULTIPLIER = 10;
+import {RATING_MULTIPLIER} from '../../constants';
 
 const OfferCard = (props) => {
   const {
+    id,
     title,
     type,
     image,
@@ -26,8 +27,8 @@ const OfferCard = (props) => {
     >
       {isPremium ? (<div className="place-card__mark"><span>Premium</span></div>) : ``}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#" onClick={onImageClick}>
-          <img className="place-card__image" src={image} width="260" height="200" alt="Place image"/>
+        <a href="#">
+          <img className="place-card__image" src={image} width="260" height="200" alt="Place image" onClick={onImageClick}/>
         </a>
       </div>
       <div className="place-card__info">
@@ -50,7 +51,7 @@ const OfferCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={onTitleClick}>{title}</a>
+          <Link to={`/offer/${id}`} onClick={onTitleClick}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -58,6 +59,7 @@ const OfferCard = (props) => {
 };
 
 OfferCard.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
@@ -65,7 +67,7 @@ OfferCard.propTypes = {
   rating: PropTypes.number.isRequired,
   isBookmarked: PropTypes.bool,
   isPremium: PropTypes.bool,
-  onTitleClick: PropTypes.func,
+  onTitleClick: PropTypes.func.isRequired,
   onImageClick: PropTypes.func,
   onMouseOver: PropTypes.func,
   onMouseOut: PropTypes.func,

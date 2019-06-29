@@ -4,3 +4,5 @@ export const StatusCode = {
 };
 
 export const BASE_URL = `https://es31-server.appspot.com/six-cities`;
+export const RATING_MULTIPLIER = 10;
+export const MAX_PREVIEW_IMAGES = 6;

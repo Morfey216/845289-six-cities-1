@@ -31,7 +31,10 @@ export const getCurrentOffersData = createSelector(
     (currentCityIndex, citiesData, offersData) => {
       const offers = offersData.filter((offer) => offer.city.name === citiesData[currentCityIndex].name);
 
-      // console.log(currentCityIndex, citiesData, offersData, offers);
       return offers;
     }
 );
+
+export const getActiveOffer = (state) => {
+  return state[NAME_SPACE].activeOffer;
+};

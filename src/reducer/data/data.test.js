@@ -62,6 +62,7 @@ it(`Reducer creates initialState correctly`, () => {
   expect(reducer(undefined, {})).toEqual({
     offersDataKit: [],
     currentCityIndex: 0,
+    activeOffer: null,
   });
 });
 
