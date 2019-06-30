@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import configureAPI from '../../api';
 import {Operation, ActionType, ActionCreator, reducer} from './data';
 import {StatusCode} from '../../constants';
-import {offersDataModel} from "../../data-models";
+import {offerDataModel, reviewDataModel} from "../../data-models";
 
 it(`Shoul make a correct API call to /hotels`, () => {
   const dispatch = jest.fn();
@@ -53,7 +53,40 @@ it(`Shoul make a correct API call to /hotels`, () => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.LOAD_OFFERS_DATA,
-        payload: [offersDataModel(mockData[0])],
+        payload: [offerDataModel(mockData[0])],
+      });
+    });
+});
+
+it(`Shoul make a correct API call to /comments/:id`, () => {
+  const dispatch = jest.fn();
+  const api = configureAPI(dispatch);
+  const apiMock = new MockAdapter(api);
+  const mockId = 1;
+  const reviewsLoader = Operation.loadReviewsData(mockId);
+  const mockData = [{
+    "id": 1,
+    "user": {
+      "id": 15,
+      "is_pro": true,
+      "name": `Mollie`,
+      "avatar_url": `img/avatar-max.jpg`
+    },
+    "rating": 4,
+    "comment": `Home is amazing. It's like staying in a museum. The rooms, furnishings and artworks are incredible. The views of My Vesuvius`,
+    "date": `2019-06-23T05:59:03.102Z`
+  }];
+
+  apiMock
+    .onGet(`/comments/${mockId}`)
+    .reply(StatusCode.OK, mockData);
+
+  return reviewsLoader(dispatch, jest.fn(), api)
+    .then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.LOAD_REVIEWS_DATA,
+        payload: [reviewDataModel(mockData[0])],
       });
     });
 });
@@ -63,6 +96,7 @@ it(`Reducer creates initialState correctly`, () => {
     offersDataKit: [],
     currentCityIndex: 0,
     activeOffer: null,
+    reviewsData: [],
   });
 });
 
@@ -71,5 +105,13 @@ it(`ActionCreator correctly returns CHANGE_CURRENT_CITY action`, () => {
   expect(ActionCreator.changeCurrentCity(mockCurrentCityIndex)).toEqual({
     type: ActionType.CHANGE_CURRENT_CITY,
     payload: mockCurrentCityIndex,
+  });
+});
+
+it(`ActionCreator correctly returns CHANGE_ACTIVE_OFFER action`, () => {
+  const mockOffer = {};
+  expect(ActionCreator.changeActiveOffer(mockOffer)).toEqual({
+    type: ActionType.CHANGE_ACTIVE_OFFER,
+    payload: mockOffer,
   });
 });

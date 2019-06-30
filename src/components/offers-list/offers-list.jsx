@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import OfferCard from '../offer-card/offer-card';
 import {ActionCreator, Operation} from '../../reducer/data/data';
-import {MAX_PREVIEW_IMAGES} from '../../constants';
 
 const OffersList = (props) => {
   const {offers, setActiveOffer, onReviewsDataLoaded} = props;
@@ -47,9 +46,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Operation.loadReviewsData(id));
   },
   setActiveOffer: (activeOffer) => {
-    if (activeOffer.images.length > MAX_PREVIEW_IMAGES) {
-      activeOffer.images.length = MAX_PREVIEW_IMAGES;
-    }
     dispatch(ActionCreator.changeActiveOffer(activeOffer));
   },
 });

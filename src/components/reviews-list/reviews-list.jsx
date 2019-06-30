@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getReviewsData} from '../../reducer/data/selectors';
 import ReviewItem from '../review-item/review-item';
+import {MAX_REVIEWS_QUANTITY} from '../../constants';
 
 const ReviewsList = (props) => {
   const {reviewsData} = props;
+  const preparedReviewsData = reviewsData.slice(0, MAX_REVIEWS_QUANTITY);
 
   return (
     <React.Fragment>
       <section className="property__reviews reviews">
-        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsData.length}</span></h2>
         <ul className="reviews__list">
-          {reviewsData.map((review) => {
+          {preparedReviewsData.map((review) => {
             return <ReviewItem reviewData={review} key={`review-${review.id}`}/>;
           })}
         </ul>

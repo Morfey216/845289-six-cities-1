@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {RATING_MULTIPLIER} from '../../constants';
+import moment from "moment";
 
 const ReviewItem = (props) => {
   const {user, rating, review, date} = props.reviewData;
@@ -19,14 +20,14 @@ const ReviewItem = (props) => {
         <div className="reviews__info">
           <div className="reviews__rating rating">
             <div className="reviews__stars rating__stars">
-              <span style={{width: `${rating * RATING_MULTIPLIER}%`}}></span>
+              <span style={{width: `${Math.round(rating) * RATING_MULTIPLIER}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <p className="reviews__text">
             {review}
           </p>
-          <time className="reviews__time" dateTime={date}>April 2019</time>
+          <time className="reviews__time" dateTime={date}>{moment(date).format(`MMMM YYYY`)}</time>
         </div>
       </li>
     </React.Fragment>

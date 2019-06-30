@@ -2,6 +2,10 @@ import {createSelector} from 'reselect';
 import NameSpace from '../name-spaces';
 
 const NAME_SPACE = NameSpace.DATA;
+const ComparisonResult = {
+  TRUE: 1,
+  FALSE: -1
+};
 
 export const getOffersDataKit = (state) => {
   return state[NAME_SPACE].offersDataKit;
@@ -40,5 +44,6 @@ export const getActiveOffer = (state) => {
 };
 
 export const getReviewsData = (state) => {
-  return state[NAME_SPACE].reviewsData;
+  return state[NAME_SPACE].reviewsData
+    .sort((first, second) => (first.date < second.date) ? ComparisonResult.TRUE : ComparisonResult.FALSE);
 };

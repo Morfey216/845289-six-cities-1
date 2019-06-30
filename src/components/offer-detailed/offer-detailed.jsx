@@ -5,7 +5,7 @@ import {getActiveOffer} from '../../reducer/data/selectors';
 import Header from '../header/header';
 import ReviewsList from '../reviews-list/reviews-list';
 // import Map from '../map/map';
-import {RATING_MULTIPLIER} from '../../constants';
+import {RATING_MULTIPLIER, MAX_PREVIEW_IMAGES} from '../../constants';
 
 const OfferDetailed = (props) => {
   const {images, title, isPremium, rating, bedrooms, maxAdults, price, goods, host, description} = props.activeOffer;
@@ -17,7 +17,7 @@ const OfferDetailed = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((imageSrc) => {
+              {images.slice(0, MAX_PREVIEW_IMAGES).map((imageSrc) => {
                 return (
                   <div className="property__image-wrapper" key={`img-${imageSrc}`}>
                     <img className="property__image" src={imageSrc} alt="Photo studio"/>
@@ -44,10 +44,10 @@ const OfferDetailed = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${rating * RATING_MULTIPLIER}%`}}></span>
+                  <span style={{width: `${Math.round(rating) * RATING_MULTIPLIER}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{rating}</span>
+                <span className="property__rating-value rating__value">{Math.round(rating)}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
