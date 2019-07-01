@@ -4,7 +4,6 @@ import leaflet from 'leaflet';
 import {connect} from 'react-redux';
 import {getActiveOffer} from '../../reducer/data/selectors';
 
-const ZOOM = 12;
 const PIN_WIDTH = 27;
 const PIN_HEIGHT = 39;
 
@@ -39,26 +38,28 @@ class Map extends React.PureComponent {
   _createMap() {
     const currentCityData = this.props.currentOffersData[0].city;
     const activeOffer = this.props.activeOffer;
-    const startCoordinate = [currentCityData.location.latitude, currentCityData.location.longitude];
-
-    this.map = leaflet.map(`mapid`, {
-      center: startCoordinate,
-      zoom: ZOOM,
-      zoomControl: false,
-      marker: true
-    });
-
-    const activeIcon = leaflet.icon({
-      iconUrl: `/img/map-active-pin.svg`,
-      iconSize: [PIN_WIDTH, PIN_HEIGHT]
-    });
+    const centralMapPoint = activeOffer ? activeOffer : currentCityData;
+    const centerCoordinates = [centralMapPoint.location.latitude, centralMapPoint.location.longitude];
+    const mapZoom = centralMapPoint.location.zoom;
 
     const icon = leaflet.icon({
       iconUrl: `/img/map-pin.svg`,
       iconSize: [PIN_WIDTH, PIN_HEIGHT]
     });
 
-    this.map.setView(startCoordinate, ZOOM);
+    const activeIcon = leaflet.icon({
+      iconUrl: `/img/pin.svg`,
+      iconSize: [PIN_WIDTH, PIN_HEIGHT]
+    });
+
+    this.map = leaflet.map(`mapid`, {
+      center: centerCoordinates,
+      zoom: mapZoom,
+      zoomControl: false,
+      marker: true
+    });
+
+    this.map.setView(centerCoordinates, mapZoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -71,7 +72,7 @@ class Map extends React.PureComponent {
         activeOffer.location.longitude,
       ];
 
-      leaflet.marker(activeOfferLocation, {activeIcon}).addTo(this.map);
+      leaflet.marker(activeOfferLocation, {icon: activeIcon}).addTo(this.map);
     }
 
     this.props.currentOffersData.forEach((offer) => {
@@ -83,10 +84,8 @@ class Map extends React.PureComponent {
       if (offer !== activeOffer) {
         leaflet.marker(offerLocation, {icon}).addTo(this.map);
       }
-
     });
   }
-
 }
 
 Map.propTypes = {

@@ -15,6 +15,10 @@ const OffersList = (props) => {
           onReviewsDataLoaded(offer.id);
         };
 
+        const chooseActiveOffer = () => {
+          setActiveOffer(offer);
+        };
+
         return (
           <OfferCard
             key={offer.id}
@@ -27,6 +31,7 @@ const OffersList = (props) => {
             isPremium={offer.isPremium}
             isBookmarked={offer.isBookmarked}
             onTitleClick={changeActiveOffer}
+            onImageClick={chooseActiveOffer}
             articleClassName={articleClassName}
           />);
       })}

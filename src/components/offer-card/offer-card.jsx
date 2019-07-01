@@ -15,18 +15,12 @@ const OfferCard = (props) => {
     isBookmarked,
     onTitleClick,
     onImageClick,
-    onMouseOver,
-    onMouseOut,
     articleClassName
   } = props;
 
   return (
     <React.Fragment>
-      <article
-        className={`${articleClassName} place-card`}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-      >
+      <article className={`${articleClassName} place-card`}>
         {isPremium ? (<div className="place-card__mark"><span>Premium</span></div>) : ``}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">

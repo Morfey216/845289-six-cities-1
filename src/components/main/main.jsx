@@ -69,11 +69,10 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
   onCityClick: (activeCityIndex) => {
     dispatch(ActionCreator.changeCurrentCity(activeCityIndex));
+    dispatch(ActionCreator.changeActiveOffer(null));
   },
-
 });
 
 export {Main};

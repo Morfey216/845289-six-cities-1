@@ -2,7 +2,7 @@
 
 exports[`Offer Card correctly renders with false markers 1`] = `
 <article
-  className="cities__place-card place-card"
+  className="undefined place-card"
 >
   
   <div
@@ -102,7 +102,7 @@ exports[`Offer Card correctly renders with false markers 1`] = `
 
 exports[`Offer Card correctly renders with true markers 1`] = `
 <article
-  className="cities__place-card place-card"
+  className="undefined place-card"
 >
   <div
     className="place-card__mark"
