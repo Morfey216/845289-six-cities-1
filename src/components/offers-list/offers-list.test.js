@@ -49,6 +49,7 @@ const mock = [
 it(`Offers List correctly renders`, () => {
   const setActiveItem = jest.fn();
   const setActiveOffer = jest.fn();
+  const onReviewsDataLoaded = jest.fn();
   const tree = renderer
     .create(
         <MemoryRouter>
@@ -56,6 +57,7 @@ it(`Offers List correctly renders`, () => {
             offers={mock}
             setActiveItem={setActiveItem}
             setActiveOffer={setActiveOffer}
+            onReviewsDataLoaded={onReviewsDataLoaded}
           />
         </MemoryRouter>
     )

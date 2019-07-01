@@ -2,6 +2,10 @@ import {createSelector} from 'reselect';
 import NameSpace from '../name-spaces';
 
 const NAME_SPACE = NameSpace.DATA;
+const ComparisonResult = {
+  TRUE: 1,
+  FALSE: -1
+};
 
 export const getOffersDataKit = (state) => {
   return state[NAME_SPACE].offersDataKit;
@@ -38,3 +42,20 @@ export const getCurrentOffersData = createSelector(
 export const getActiveOffer = (state) => {
   return state[NAME_SPACE].activeOffer;
 };
+
+export const getReviewsData = (state) => {
+  return state[NAME_SPACE].reviewsData
+    .sort((first, second) => (first.date < second.date) ? ComparisonResult.TRUE : ComparisonResult.FALSE);
+};
+
+export const getNearOffersData = createSelector(
+    getCurrentOffersData,
+    getActiveOffer,
+    (offers, activeOffer) => {
+      const activeIndex = offers.findIndex((offer) => offer === activeOffer);
+      const nearOffersData = offers.slice();
+      nearOffersData.splice(activeIndex, 1);
+
+      return nearOffersData;
+    }
+);

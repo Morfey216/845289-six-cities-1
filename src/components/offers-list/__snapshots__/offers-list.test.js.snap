@@ -5,7 +5,7 @@ exports[`Offers List correctly renders 1`] = `
   className="cities__places-list places__list tabs__content"
 >
   <article
-    className="cities__place-card place-card"
+    className="undefined place-card"
   >
     
     <div
@@ -18,6 +18,7 @@ exports[`Offers List correctly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
+          onClick={[Function]}
           src="img/apartment-01.jpg"
           width="260"
         />
@@ -102,7 +103,7 @@ exports[`Offers List correctly renders 1`] = `
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
+    className="undefined place-card"
   >
     <div
       className="place-card__mark"
@@ -121,6 +122,7 @@ exports[`Offers List correctly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
+          onClick={[Function]}
           src="img/room.jpg"
           width="260"
         />
@@ -205,7 +207,7 @@ exports[`Offers List correctly renders 1`] = `
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
+    className="undefined place-card"
   >
     <div
       className="place-card__mark"
@@ -224,6 +226,7 @@ exports[`Offers List correctly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
+          onClick={[Function]}
           src="img/apartment-02.jpg"
           width="260"
         />
@@ -308,7 +311,7 @@ exports[`Offers List correctly renders 1`] = `
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
+    className="undefined place-card"
   >
     
     <div
@@ -321,6 +324,7 @@ exports[`Offers List correctly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
+          onClick={[Function]}
           src="img/apartment-03.jpg"
           width="260"
         />
@@ -404,6 +408,5 @@ exports[`Offers List correctly renders 1`] = `
       </p>
     </div>
   </article>
-  ;
 </div>
 `;

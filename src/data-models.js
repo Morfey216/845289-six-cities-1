@@ -8,7 +8,7 @@ export const userDataModel = (data) => {
   };
 };
 
-export const offersDataModel = (data) => {
+export const offerDataModel = (data) => {
   return {
     id: data.id,
     city: {
@@ -42,5 +42,20 @@ export const offersDataModel = (data) => {
       longitude: data.location.longitude,
       zoom: data.location.zoom
     }
+  };
+};
+
+export const reviewDataModel = (data) => {
+  return {
+    id: data.id,
+    user: {
+      id: data.user.id,
+      name: data.user.name,
+      avatarUrl: data.user[`avatar_url`],
+      isPro: data.user[`is_pro`]
+    },
+    rating: data.rating,
+    review: data.comment,
+    date: data.date,
   };
 };

@@ -7,11 +7,9 @@ import Header from '../header/header';
 import OffersList from '../offers-list/offers-list';
 import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
 const Main = (props) => {
   const {currentCityIndex, citiesData, currentOffersData, onCityClick} = props;
-  const OffersListWrapped = withActiveItem(OffersList);
 
   return (
     <React.Fragment>
@@ -45,10 +43,10 @@ const Main = (props) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <OffersListWrapped offers={currentOffersData}/>
+              <OffersList offers={currentOffersData} articleClassName={`cities__place-card`}/>
             </section>
             <div className="cities__right-section">
-              <Map />
+              <Map currentOffersData={currentOffersData} mapClassName={`cities__map`}/>
             </div>
           </div>
         </div>
@@ -71,11 +69,10 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
   onCityClick: (activeCityIndex) => {
     dispatch(ActionCreator.changeCurrentCity(activeCityIndex));
+    dispatch(ActionCreator.changeActiveOffer(null));
   },
-
 });
 
 export {Main};

@@ -2,7 +2,6 @@ import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import OfferCard from './offer-card';
-// import {MemoryRouter} from 'react-router-dom';
 
 Enzyme.configure({adapter: new Adapter()});
 

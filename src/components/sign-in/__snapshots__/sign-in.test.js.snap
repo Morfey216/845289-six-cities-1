@@ -4,7 +4,7 @@ exports[`SignIn correctly renders 1`] = `
 Array [
   <Header />,
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--login"
   >
     <div
       className="page__login-container container"

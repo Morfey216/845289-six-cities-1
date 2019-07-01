@@ -121,7 +121,7 @@ Array [
             </ul>
           </form>
           <OffersList
-            activeItem=""
+            articleClassName="cities__place-card"
             offers={
               Array [
                 Object {
@@ -168,13 +168,60 @@ Array [
                 },
               ]
             }
-            setActiveItem={[Function]}
           />
         </section>
         <div
           className="cities__right-section"
         >
-          <Map />
+          <Map
+            currentOffersData={
+              Array [
+                Object {
+                  "city": Object {
+                    "location": Array [
+                      52.38333,
+                      4.9,
+                    ],
+                    "name": "Paris",
+                  },
+                  "id": 0,
+                  "isBookmarked": false,
+                  "isPremium": false,
+                  "location": Array [
+                    52.3909553943508,
+                    4.85309666406198,
+                  ],
+                  "previewImage": "img/apartment-01.jpg",
+                  "price": 150,
+                  "rating": 9,
+                  "title": "Beautiful & luxurious apartment at great location",
+                  "type": "Apartment",
+                },
+                Object {
+                  "city": Object {
+                    "location": Array [
+                      52.38333,
+                      4.9,
+                    ],
+                    "name": "Paris",
+                  },
+                  "id": 1,
+                  "isBookmarked": true,
+                  "isPremium": true,
+                  "location": Array [
+                    52.3695553943508,
+                    4.85309666406198,
+                  ],
+                  "previewImage": "img/apartment-02.jpg",
+                  "price": 200,
+                  "rating": 9.5,
+                  "title": "Wood and stone place",
+                  "type": "Private room",
+                },
+              ]
+            }
+            mapClassName="cities__map"
+          />
         </div>
       </div>
     </div>
