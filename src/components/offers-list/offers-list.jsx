@@ -5,7 +5,7 @@ import OfferCard from '../offer-card/offer-card';
 import {ActionCreator, Operation} from '../../reducer/data/data';
 
 const OffersList = (props) => {
-  const {offers, setActiveOffer, onReviewsDataLoaded} = props;
+  const {offers, setActiveOffer, onReviewsDataLoaded, articleClassName} = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -27,18 +27,18 @@ const OffersList = (props) => {
             isPremium={offer.isPremium}
             isBookmarked={offer.isBookmarked}
             onTitleClick={changeActiveOffer}
-            // onMouseOver={setActiveItem(offer.title)}
+            articleClassName={articleClassName}
           />);
-      })};
+      })}
     </div>
   );
 };
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setActiveItem: PropTypes.func.isRequired,
   setActiveOffer: PropTypes.func.isRequired,
   onReviewsDataLoaded: PropTypes.func.isRequired,
+  articleClassName: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({

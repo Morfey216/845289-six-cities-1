@@ -47,3 +47,15 @@ export const getReviewsData = (state) => {
   return state[NAME_SPACE].reviewsData
     .sort((first, second) => (first.date < second.date) ? ComparisonResult.TRUE : ComparisonResult.FALSE);
 };
+
+export const getNearOffersData = createSelector(
+    getCurrentOffersData,
+    getActiveOffer,
+    (offers, activeOffer) => {
+      const activeIndex = offers.findIndex((offer) => offer === activeOffer);
+      const nearOffersData = offers.slice();
+      nearOffersData.splice(activeIndex, 1);
+
+      return nearOffersData;
+    }
+);
