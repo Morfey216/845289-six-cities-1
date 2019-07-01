@@ -4,11 +4,5 @@ exports[`Map correctly renders 1`] = `
 <section
   className="undefined map"
   id="mapid"
-  style={
-    Object {
-      "height": 800,
-      "width": "100%",
-    }
-  }
 />
 `;

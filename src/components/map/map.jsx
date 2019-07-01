@@ -13,7 +13,7 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    return <section className={`${this.props.mapClassName} map`} id="mapid" style={{width: `100%`, height: 800}}/>;
+    return <section className={`${this.props.mapClassName} map`} id="mapid"/>;
   }
 
   componentDidMount() {
