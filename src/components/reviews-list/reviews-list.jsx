@@ -8,7 +8,7 @@ import ReviewForm from '../review-form/review-form';
 import {MAX_REVIEWS_QUANTITY} from '../../constants';
 
 const ReviewsList = (props) => {
-  const {isAuthorizationRequired, reviewsData} = props;
+  const {activeOfferId, isAuthorizationRequired, reviewsData} = props;
   const preparedReviewsData = reviewsData.slice(0, MAX_REVIEWS_QUANTITY);
 
   return (
@@ -20,7 +20,7 @@ const ReviewsList = (props) => {
             return <ReviewItem reviewData={review} key={`review-${review.id}`}/>;
           })}
         </ul>
-        {isAuthorizationRequired ? `` : <ReviewForm/>}
+        {isAuthorizationRequired ? `` : <ReviewForm activeOfferId={activeOfferId}/>}
       </section>
     </React.Fragment>
   );
@@ -40,6 +40,7 @@ ReviewsList.propTypes = {
     date: PropTypes.string,
   })),
   isAuthorizationRequired: PropTypes.bool,
+  activeOfferId: PropTypes.number,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

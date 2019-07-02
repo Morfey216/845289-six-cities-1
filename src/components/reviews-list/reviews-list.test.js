@@ -2,6 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {ReviewsList} from './reviews-list';
 
+jest.mock(`../review-form/review-form`, () => `ReviewForm`);
+
 const mockReviewsData = [
   {
     id: 1,
@@ -29,9 +31,12 @@ const mockReviewsData = [
   }
 ];
 
+const mockActiveOfferId = 1;
+
 it(`Reviews List correctly renders with true isAuthorizationRequired`, () => {
   const tree = renderer
       .create(<ReviewsList
+        activeOfferId={mockActiveOfferId}
         isAuthorizationRequired={true}
         reviewsData={mockReviewsData}
       />)
@@ -43,6 +48,7 @@ it(`Reviews List correctly renders with true isAuthorizationRequired`, () => {
 it(`Reviews List correctly renders with false isAuthorizationRequired`, () => {
   const tree = renderer
         .create(<ReviewsList
+          activeOfferId={mockActiveOfferId}
           isAuthorizationRequired={false}
           reviewsData={mockReviewsData}
         />)

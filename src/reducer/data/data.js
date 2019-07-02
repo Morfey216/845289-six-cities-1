@@ -51,6 +51,15 @@ const Operation = {
         }
       });
   },
+  sendReviewData: (id, review) => (dispatch, _getState, api) => {
+    return api.post(`/comments/${id}`, review)
+      .then((response) => {
+        if (response.status === StatusCode.OK) {
+          const reviewsData = response.data.map((itData) => reviewDataModel(itData));
+          dispatch(ActionCreator.loadReviewsData(reviewsData));
+        }
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {

@@ -30,7 +30,7 @@ const init = () => {
           <App/>
         </BrowserRouter>
       </Provider>,
-      document.querySelector(`body`)
+      document.querySelector(`#root`).parentElement
   );
 };
 

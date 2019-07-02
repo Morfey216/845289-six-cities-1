@@ -9,7 +9,7 @@ import Map from '../map/map';
 import {RATING_MULTIPLIER, MAX_PREVIEW_IMAGES, MAX_NEAR_OFFERS_QUANTITY} from '../../constants';
 
 const OfferDetailed = (props) => {
-  const {images, title, isPremium, rating, bedrooms, maxAdults, price, goods, host, description} = props.activeOffer;
+  const {id, images, title, isPremium, rating, bedrooms, maxAdults, price, goods, host, description} = props.activeOffer;
   const {nearOffersData} = props;
 
   return (
@@ -97,7 +97,7 @@ const OfferDetailed = (props) => {
                   </p>
                 </div>
               </div>
-              <ReviewsList/>
+              <ReviewsList activeOfferId={id}/>
             </div>
           </div>
           <Map currentOffersData={nearOffersData} mapClassName={`property__map`}/>
