@@ -234,7 +234,9 @@ Array [
               </p>
             </div>
           </div>
-          <ReviewsList />
+          <ReviewsList
+            activeOfferId={6}
+          />
         </div>
       </div>
       <Map
