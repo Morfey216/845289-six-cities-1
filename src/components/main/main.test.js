@@ -4,14 +4,10 @@ import renderer from 'react-test-renderer';
 import {Main} from './main';
 
 jest.mock(`../header/header`, () => `Header`);
-jest.mock(`../sorting/sorting`, () => `Sorting`);
-jest.mock(`../offers-list/offers-list`, () => `OffersList`);
-jest.mock(`../map/map`, () => `Map`);
+jest.mock(`../offers-empty/offers-empty`, () => `OffersEmpty`);
+jest.mock(`../offers-filled/offers-filled`, () => `OffersFilled`);
 
-const mockOffersData = [
-  {},
-  {}
-];
+const mockOffersData = [];
 
 const citiesDataKit = [
   {
