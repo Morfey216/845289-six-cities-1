@@ -66,106 +66,16 @@ Array [
           >
             2 places to stay in Paris
           </b>
-          <form
-            action="#"
-            className="places__sorting"
-            method="get"
-          >
-            <span
-              className="places__sorting-caption"
-            >
-              Sort by
-            </span>
-            <span
-              className="places__sorting-type"
-              tabIndex="0"
-            >
-              Popular
-              <svg
-                className="places__sorting-arrow"
-                height="4"
-                width="7"
-              >
-                <use
-                  xlinkHref="#icon-arrow-select"
-                />
-              </svg>
-            </span>
-            <ul
-              className="places__options places__options--custom places__options--opened"
-            >
-              <li
-                className="places__option places__option--active"
-                tabIndex="0"
-              >
-                Popular
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Price: low to high
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Price: high to low
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Top rated first
-              </li>
-            </ul>
-          </form>
+          <Sorting
+            hundlerItemClick={[Function]}
+            isItemActive={false}
+          />
           <OffersList
             articleClassName="cities__place-card"
             offers={
               Array [
-                Object {
-                  "city": Object {
-                    "location": Array [
-                      52.38333,
-                      4.9,
-                    ],
-                    "name": "Paris",
-                  },
-                  "id": 0,
-                  "isBookmarked": false,
-                  "isPremium": false,
-                  "location": Array [
-                    52.3909553943508,
-                    4.85309666406198,
-                  ],
-                  "previewImage": "img/apartment-01.jpg",
-                  "price": 150,
-                  "rating": 9,
-                  "title": "Beautiful & luxurious apartment at great location",
-                  "type": "Apartment",
-                },
-                Object {
-                  "city": Object {
-                    "location": Array [
-                      52.38333,
-                      4.9,
-                    ],
-                    "name": "Paris",
-                  },
-                  "id": 1,
-                  "isBookmarked": true,
-                  "isPremium": true,
-                  "location": Array [
-                    52.3695553943508,
-                    4.85309666406198,
-                  ],
-                  "previewImage": "img/apartment-02.jpg",
-                  "price": 200,
-                  "rating": 9.5,
-                  "title": "Wood and stone place",
-                  "type": "Private room",
-                },
+                Object {},
+                Object {},
               ]
             }
           />
@@ -176,48 +86,8 @@ Array [
           <Map
             currentOffersData={
               Array [
-                Object {
-                  "city": Object {
-                    "location": Array [
-                      52.38333,
-                      4.9,
-                    ],
-                    "name": "Paris",
-                  },
-                  "id": 0,
-                  "isBookmarked": false,
-                  "isPremium": false,
-                  "location": Array [
-                    52.3909553943508,
-                    4.85309666406198,
-                  ],
-                  "previewImage": "img/apartment-01.jpg",
-                  "price": 150,
-                  "rating": 9,
-                  "title": "Beautiful & luxurious apartment at great location",
-                  "type": "Apartment",
-                },
-                Object {
-                  "city": Object {
-                    "location": Array [
-                      52.38333,
-                      4.9,
-                    ],
-                    "name": "Paris",
-                  },
-                  "id": 1,
-                  "isBookmarked": true,
-                  "isPremium": true,
-                  "location": Array [
-                    52.3695553943508,
-                    4.85309666406198,
-                  ],
-                  "previewImage": "img/apartment-02.jpg",
-                  "price": 200,
-                  "rating": 9.5,
-                  "title": "Wood and stone place",
-                  "type": "Private room",
-                },
+                Object {},
+                Object {},
               ]
             }
             mapClassName="cities__map"

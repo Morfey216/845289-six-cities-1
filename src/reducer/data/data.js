@@ -1,17 +1,20 @@
 import {StatusCode} from '../../constants';
 import {offerDataModel, reviewDataModel} from "../../data-models";
+import {SORTING_TYPES} from '../../constants';
 
 const ActionType = {
   LOAD_OFFERS_DATA: `LOAD_OFFERS_DATA`,
   LOAD_REVIEWS_DATA: `LOAD_REVIEWS_DATA`,
   CHANGE_CURRENT_CITY: `CHANGE_CURRENT_CITY`,
   CHANGE_ACTIVE_OFFER: `CHANGE_ACTIVE_OFFER`,
+  CHANGE_ACTIVE_SORTING_TYPE: `CHANGE_ACTIVE_SORTING_TYPE`,
 };
 
 const initialState = {
   offersDataKit: [],
   currentCityIndex: 0,
   activeOffer: null,
+  activeSortingType: SORTING_TYPES[0],
   reviewsData: [],
 };
 
@@ -31,6 +34,10 @@ const ActionCreator = {
   changeActiveOffer: (offer) => ({
     type: ActionType.CHANGE_ACTIVE_OFFER,
     payload: offer,
+  }),
+  changeActiveSortingType: (type) => ({
+    type: ActionType.CHANGE_ACTIVE_SORTING_TYPE,
+    payload: type,
   }),
 };
 
@@ -79,6 +86,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_ACTIVE_OFFER:
       return Object.assign({}, state, {
         activeOffer: action.payload,
+      });
+    case ActionType.CHANGE_ACTIVE_SORTING_TYPE:
+      return Object.assign({}, state, {
+        activeSortingType: action.payload,
       });
   }
   return state;

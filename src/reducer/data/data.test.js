@@ -3,6 +3,7 @@ import configureAPI from '../../api';
 import {Operation, ActionType, ActionCreator, reducer} from './data';
 import {StatusCode} from '../../constants';
 import {offerDataModel, reviewDataModel} from "../../data-models";
+import {SORTING_TYPES} from '../../constants';
 
 it(`Shoul make a correct API call to /hotels`, () => {
   const dispatch = jest.fn();
@@ -96,7 +97,24 @@ it(`Reducer creates initialState correctly`, () => {
     offersDataKit: [],
     currentCityIndex: 0,
     activeOffer: null,
+    activeSortingType: SORTING_TYPES[0],
     reviewsData: [],
+  });
+});
+
+it(`ActionCreator correctly returns LOAD_OFFERS_DATA action`, () => {
+  const mockOffersData = [];
+  expect(ActionCreator.loadOffersData(mockOffersData)).toEqual({
+    type: ActionType.LOAD_OFFERS_DATA,
+    payload: mockOffersData,
+  });
+});
+
+it(`ActionCreator correctly returns LOAD_REVIEWS_DATA action`, () => {
+  const mockReviewsData = [];
+  expect(ActionCreator.loadReviewsData(mockReviewsData)).toEqual({
+    type: ActionType.LOAD_REVIEWS_DATA,
+    payload: mockReviewsData,
   });
 });
 
@@ -113,5 +131,13 @@ it(`ActionCreator correctly returns CHANGE_ACTIVE_OFFER action`, () => {
   expect(ActionCreator.changeActiveOffer(mockOffer)).toEqual({
     type: ActionType.CHANGE_ACTIVE_OFFER,
     payload: mockOffer,
+  });
+});
+
+it(`ActionCreator correctly returns CHANGE_ACTIVE_SORTING_TYPE action`, () => {
+  const mockIsItemActive = true;
+  expect(ActionCreator.changeActiveSortingType(mockIsItemActive)).toEqual({
+    type: ActionType.CHANGE_ACTIVE_SORTING_TYPE,
+    payload: mockIsItemActive,
   });
 });

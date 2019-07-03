@@ -4,12 +4,15 @@ import {connect} from 'react-redux';
 import {getCitiesData, getCurrentCityIndex, getCurrentOffersData} from '../../reducer/data/selectors';
 import {ActionCreator} from '../../reducer/data/data';
 import Header from '../header/header';
+import Sorting from '../sorting/sorting';
 import OffersList from '../offers-list/offers-list';
 import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
+import widthItemActiveSwitch from '../../hocs/width-item-active-switch/width-item-active-switch';
 
 const Main = (props) => {
   const {currentCityIndex, citiesData, currentOffersData, onCityClick} = props;
+  const WidthItemActiveSwitchWrapper = widthItemActiveSwitch(Sorting);
 
   return (
     <React.Fragment>
@@ -28,21 +31,7 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{`${currentOffersData.length} places to stay in ${citiesData[currentCityIndex] !== undefined ? citiesData[currentCityIndex].name : ``}`}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-              </form>
+              <WidthItemActiveSwitchWrapper/>
               <OffersList offers={currentOffersData} articleClassName={`cities__place-card`}/>
             </section>
             <div className="cities__right-section">
