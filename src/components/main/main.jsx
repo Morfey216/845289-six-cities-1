@@ -4,15 +4,13 @@ import {connect} from 'react-redux';
 import {getCitiesData, getCurrentCityIndex, getCurrentOffersData} from '../../reducer/data/selectors';
 import {ActionCreator} from '../../reducer/data/data';
 import Header from '../header/header';
-import Sorting from '../sorting/sorting';
-import OffersList from '../offers-list/offers-list';
+import OffersEmpty from '../offers-empty/offers-empty';
+import OffersFilled from '../offers-filled/offers-filled';
 import CitiesList from '../cities-list/cities-list';
-import Map from '../map/map';
-import widthItemActiveSwitch from '../../hocs/width-item-active-switch/width-item-active-switch';
 
 const Main = (props) => {
   const {currentCityIndex, citiesData, currentOffersData, onCityClick} = props;
-  const WidthItemActiveSwitchWrapper = widthItemActiveSwitch(Sorting);
+  const currentCityName = citiesData[currentCityIndex] !== undefined ? citiesData[currentCityIndex].name : ``;
 
   return (
     <React.Fragment>
@@ -27,17 +25,9 @@ const Main = (props) => {
           />
         </div>
         <div className="cities__places-wrapper">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${currentOffersData.length} places to stay in ${citiesData[currentCityIndex] !== undefined ? citiesData[currentCityIndex].name : ``}`}</b>
-              <WidthItemActiveSwitchWrapper/>
-              <OffersList offers={currentOffersData} articleClassName={`cities__place-card`}/>
-            </section>
-            <div className="cities__right-section">
-              <Map currentOffersData={currentOffersData} mapClassName={`cities__map`}/>
-            </div>
-          </div>
+          {currentOffersData.length
+            ? <OffersFilled currentCityName={currentCityName} currentOffersData={currentOffersData}/>
+            : <OffersEmpty currentCityName={currentCityName} currentOffersData={currentOffersData}/>}
         </div>
       </main>
     </React.Fragment>
