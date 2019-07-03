@@ -27,7 +27,8 @@ const Main = (props) => {
         <div className="cities__places-wrapper">
           {currentOffersData.length
             ? <OffersFilled currentCityName={currentCityName} currentOffersData={currentOffersData}/>
-            : <OffersEmpty currentCityName={currentCityName} currentOffersData={currentOffersData}/>}
+            : <OffersEmpty currentCityName={currentCityName} currentOffersData={currentOffersData}/>
+          }
         </div>
       </main>
     </React.Fragment>

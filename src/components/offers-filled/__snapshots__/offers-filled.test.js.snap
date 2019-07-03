@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OffersFilled correctly renders 1`] = `
+<div
+  className="cities__places-container container"
+>
+  <section
+    className="cities__places places"
+  >
+    <h2
+      className="visually-hidden"
+    >
+      Places
+    </h2>
+    <b
+      className="places__found"
+    >
+      2 places to stay in Paris
+    </b>
+    <Sorting
+      hundlerItemClick={[Function]}
+      isItemActive={false}
+    />
+    <OffersList
+      articleClassName="cities__place-card"
+      offers={
+        Array [
+          Object {},
+          Object {},
+        ]
+      }
+    />
+  </section>
+  <div
+    className="cities__right-section"
+  >
+    <Map
+      currentOffersData={
+        Array [
+          Object {},
+          Object {},
+        ]
+      }
+      mapClassName="cities__map"
+    />
+  </div>
+</div>
+`;
