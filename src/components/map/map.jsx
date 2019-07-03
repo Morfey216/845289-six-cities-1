@@ -43,12 +43,12 @@ class Map extends React.PureComponent {
     const mapZoom = centralMapPoint.location.zoom;
 
     const icon = leaflet.icon({
-      iconUrl: `/img/map-pin.svg`,
+      iconUrl: `img/map-pin.svg`,
       iconSize: [PIN_WIDTH, PIN_HEIGHT]
     });
 
     const activeIcon = leaflet.icon({
-      iconUrl: `/img/pin.svg`,
+      iconUrl: `img/pin.svg`,
       iconSize: [PIN_WIDTH, PIN_HEIGHT]
     });
 
