@@ -58,6 +58,10 @@ it(`Offers List correctly renders`, () => {
             setActiveItem={setActiveItem}
             setActiveOffer={setActiveOffer}
             onReviewsDataLoaded={onReviewsDataLoaded}
+            divClassName={`cities__places-list places__list tabs__content`}
+            articleClassName={`cities__place-card`}
+            imageWrapperClassName={`cities__image-wrapper`}
+            placeCardInfoClassName={``}
           />
         </MemoryRouter>
     )

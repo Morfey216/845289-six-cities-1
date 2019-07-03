@@ -2,7 +2,7 @@
 
 exports[`Offer Card correctly renders with false markers 1`] = `
 <article
-  className="undefined place-card"
+  className="cities__place-card place-card"
 >
   
   <div
@@ -21,7 +21,7 @@ exports[`Offer Card correctly renders with false markers 1`] = `
     </a>
   </div>
   <div
-    className="place-card__info"
+    className=" place-card__info"
   >
     <div
       className="place-card__price-wrapper"
@@ -102,7 +102,7 @@ exports[`Offer Card correctly renders with false markers 1`] = `
 
 exports[`Offer Card correctly renders with true markers 1`] = `
 <article
-  className="undefined place-card"
+  className="cities__place-card place-card"
 >
   <div
     className="place-card__mark"
@@ -127,7 +127,7 @@ exports[`Offer Card correctly renders with true markers 1`] = `
     </a>
   </div>
   <div
-    className="place-card__info"
+    className=" place-card__info"
   >
     <div
       className="place-card__price-wrapper"

@@ -12,7 +12,6 @@ const mock = {
   'rating': 10,
   'is_premium': true,
   'is_favorite': true,
-  'isBookmarked': true,
 };
 
 it(`Offer Card correctly renders with false markers`, () => {
@@ -29,6 +28,9 @@ it(`Offer Card correctly renders with false markers`, () => {
             isPremium={!mock[`is_premium`]}
             isFavorite={!mock[`is_favorite`]}
             onTitleClick={jest.fn()}
+            articleClassName={`cities__place-card`}
+            imageWrapperClassName={`cities__image-wrapper`}
+            placeCardInfoClassName={``}
           />
         </MemoryRouter>
     )
@@ -51,6 +53,9 @@ it(`Offer Card correctly renders with true markers`, () => {
             isPremium={mock[`is_premium`]}
             isFavorite={mock[`is_favorite`]}
             onTitleClick={jest.fn()}
+            articleClassName={`cities__place-card`}
+            imageWrapperClassName={`cities__image-wrapper`}
+            placeCardInfoClassName={``}
           />
         </MemoryRouter>)
     .toJSON();

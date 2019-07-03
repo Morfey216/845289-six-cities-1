@@ -260,6 +260,8 @@ Array [
         >
           <OffersList
             articleClassName="near-places__card"
+            divClassName="near-places__list places__list"
+            imageWrapperClassName="near-places__image-wrapper"
             offers={Array []}
           />
         </div>

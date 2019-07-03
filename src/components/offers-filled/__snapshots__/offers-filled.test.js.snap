@@ -23,6 +23,8 @@ exports[`OffersFilled correctly renders 1`] = `
     />
     <OffersList
       articleClassName="cities__place-card"
+      divClassName="cities__places-list places__list tabs__content"
+      imageWrapperClassName="cities__image-wrapper"
       offers={
         Array [
           Object {},
