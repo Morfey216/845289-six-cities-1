@@ -23,6 +23,7 @@ const init = () => {
   /* eslint-enable */
 
   store.dispatch(Operation.loadOffersData());
+  store.dispatch(Operation.loadFavoritesData());
 
   ReactDOM.render(
       <Provider store={store}>

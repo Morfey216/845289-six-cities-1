@@ -16,19 +16,21 @@ const OfferCard = (props) => {
     onTitleClick,
     onImageClick,
     onButtonClick,
-    articleClassName
+    articleClassName,
+    imageWrapperClassName,
+    placeCardInfoClassName,
   } = props;
 
   return (
     <React.Fragment>
       <article className={`${articleClassName} place-card`}>
         {isPremium ? (<div className="place-card__mark"><span>Premium</span></div>) : ``}
-        <div className="cities__image-wrapper place-card__image-wrapper">
+        <div className={`${imageWrapperClassName} place-card__image-wrapper`}>
           <a href="#">
             <img className="place-card__image" src={image} width="260" height="200" alt="Place image" onClick={onImageClick}/>
           </a>
         </div>
-        <div className="place-card__info">
+        <div className={`${placeCardInfoClassName} place-card__info`}>
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
               <b className="place-card__price-value">&euro;{price}</b>
@@ -69,6 +71,8 @@ OfferCard.propTypes = {
   isFavorite: PropTypes.bool,
   isPremium: PropTypes.bool,
   articleClassName: PropTypes.string,
+  imageWrapperClassName: PropTypes.string,
+  placeCardInfoClassName: PropTypes.string,
   onTitleClick: PropTypes.func.isRequired,
   onImageClick: PropTypes.func,
   onButtonClick: PropTypes.func,

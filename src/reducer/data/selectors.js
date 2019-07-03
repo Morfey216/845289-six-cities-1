@@ -28,6 +28,23 @@ export const getReviewsData = (state) => {
     .sort((first, second) => (first.date < second.date) ? ComparisonResult.TRUE : ComparisonResult.FALSE);
 };
 
+export const getFavoritesData = (state) => {
+  return state[NAME_SPACE].favoritesData;
+};
+
+export const getFavoritesCitiesData = createSelector(
+    getFavoritesData,
+    (favoritesData) => {
+      const citiesData = [];
+      favoritesData.forEach((offer) => {
+        if (!citiesData.find((city) => city.name === offer.city.name)) {
+          citiesData.push(offer.city);
+        }
+      });
+      return citiesData;
+    }
+);
+
 export const getCitiesData = createSelector(
     getOffersDataKit,
     (offersData) => {

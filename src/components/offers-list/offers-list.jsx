@@ -5,10 +5,19 @@ import OfferCard from '../offer-card/offer-card';
 import {ActionCreator, Operation} from '../../reducer/data/data';
 
 const OffersList = (props) => {
-  const {offers, setActiveOffer, changeFavoriteStatus, onReviewsDataLoaded, articleClassName} = props;
+  const {
+    offers,
+    setActiveOffer,
+    changeFavoriteStatus,
+    onReviewsDataLoaded,
+    articleClassName,
+    divClassName,
+    imageWrapperClassName,
+    placeCardInfoClassName,
+  } = props;
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={divClassName}>
       {offers.map((offer) => {
         const changeActiveOffer = () => {
           setActiveOffer(offer);
@@ -39,6 +48,8 @@ const OffersList = (props) => {
             onImageClick={chooseActiveOffer}
             onButtonClick={changeFavoriteOffer}
             articleClassName={articleClassName}
+            imageWrapperClassName={imageWrapperClassName}
+            placeCardInfoClassName={placeCardInfoClassName}
           />);
       })}
     </div>
@@ -51,6 +62,9 @@ OffersList.propTypes = {
   changeFavoriteStatus: PropTypes.func,
   onReviewsDataLoaded: PropTypes.func.isRequired,
   articleClassName: PropTypes.string,
+  divClassName: PropTypes.string,
+  imageWrapperClassName: PropTypes.string,
+  placeCardInfoClassName: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({

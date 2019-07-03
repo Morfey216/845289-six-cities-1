@@ -107,7 +107,11 @@ const OfferDetailed = (props) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers={nearOffersData} articleClassName={`near-places__card`}/>
+              <OffersList offers={nearOffersData}
+                divClassName={`near-places__list places__list`}
+                articleClassName={`near-places__card`}
+                imageWrapperClassName={`near-places__image-wrapper`}
+              />
             </div>
           </section>
         </div>

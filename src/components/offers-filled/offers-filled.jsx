@@ -16,7 +16,11 @@ const OffersFilled = (props) => {
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{`${currentOffersData.length} places to stay in ${currentCityName}`}</b>
           <WidthItemActiveSwitchWrapper/>
-          <OffersList offers={currentOffersData} articleClassName={`cities__place-card`}/>
+          <OffersList offers={currentOffersData}
+            divClassName={`cities__places-list places__list tabs__content`}
+            articleClassName={`cities__place-card`}
+            imageWrapperClassName={`cities__image-wrapper`}
+          />
         </section>
         <div className="cities__right-section">
           <Map currentOffersData={currentOffersData} mapClassName={`cities__map`}/>
