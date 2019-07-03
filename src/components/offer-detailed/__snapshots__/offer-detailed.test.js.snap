@@ -87,7 +87,7 @@ Array [
               Offer title
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
               type="button"
             >
               <svg

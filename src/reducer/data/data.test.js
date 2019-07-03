@@ -99,12 +99,14 @@ it(`Reducer creates initialState correctly`, () => {
     activeOffer: null,
     activeSortingType: SORTING_TYPES[0],
     reviewsData: [],
+    favoritesData: [],
+    error: null,
   });
 });
 
 it(`ActionCreator correctly returns LOAD_OFFERS_DATA action`, () => {
   const mockOffersData = [];
-  expect(ActionCreator.loadOffersData(mockOffersData)).toEqual({
+  expect(ActionCreator.setOffersData(mockOffersData)).toEqual({
     type: ActionType.LOAD_OFFERS_DATA,
     payload: mockOffersData,
   });

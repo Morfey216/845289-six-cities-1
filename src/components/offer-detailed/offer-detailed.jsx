@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getActiveOffer, getNearOffersData} from '../../reducer/data/selectors';
+import {Operation} from '../../reducer/data/data';
 import Header from '../header/header';
 import ReviewsList from '../reviews-list/reviews-list';
 import OffersList from '../offers-list/offers-list';
@@ -9,7 +10,7 @@ import Map from '../map/map';
 import {RATING_MULTIPLIER, MAX_PREVIEW_IMAGES, MAX_NEAR_OFFERS_QUANTITY} from '../../constants';
 
 const OfferDetailed = (props) => {
-  const {id, images, title, isPremium, rating, bedrooms, maxAdults, price, goods, host, description} = props.activeOffer;
+  const {id, images, title, isPremium, isFavorite, rating, bedrooms, maxAdults, price, goods, host, description} = props.activeOffer;
   const {nearOffersData} = props;
 
   return (
@@ -37,11 +38,11 @@ const OfferDetailed = (props) => {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
+                <button className={`property__bookmark-button button ${isFavorite ? `property__bookmark-button--active` : ``}`} type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
-                  <span className="visually-hidden">To bookmarks</span>
+                  <span className="visually-hidden">{isFavorite ? `In bookmarks` : `To bookmarks`}</span>
                 </button>
               </div>
               <div className="property__rating rating">
@@ -121,6 +122,7 @@ OfferDetailed.propTypes = {
     images: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     rating: PropTypes.number.isRequired,
     bedrooms: PropTypes.number.isRequired,
     maxAdults: PropTypes.number.isRequired,
@@ -130,6 +132,7 @@ OfferDetailed.propTypes = {
     description: PropTypes.string.isRequired,
   }),
   nearOffersData: PropTypes.array,
+  changeFavoriteStatus: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -137,5 +140,11 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   nearOffersData: getNearOffersData(state).slice(0, MAX_NEAR_OFFERS_QUANTITY),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  changeFavoriteStatus: (id, status) => {
+    dispatch(Operation.changeFavoriteStatus(id, status));
+  },
+});
+
 export {OfferDetailed};
-export default connect(mapStateToProps)(OfferDetailed);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferDetailed);

@@ -47,6 +47,7 @@ exports[`Offers List correctly renders 1`] = `
         </div>
         <button
           className="place-card__bookmark-button button "
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -151,6 +152,7 @@ exports[`Offers List correctly renders 1`] = `
         </div>
         <button
           className="place-card__bookmark-button button place-card__bookmark-button--active"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -255,6 +257,7 @@ exports[`Offers List correctly renders 1`] = `
         </div>
         <button
           className="place-card__bookmark-button button "
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -353,6 +356,7 @@ exports[`Offers List correctly renders 1`] = `
         </div>
         <button
           className="place-card__bookmark-button button place-card__bookmark-button--active"
+          onClick={[Function]}
           type="button"
         >
           <svg

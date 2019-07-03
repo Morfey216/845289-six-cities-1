@@ -1,6 +1,5 @@
-import {StatusCode} from '../../constants';
 import {offerDataModel, reviewDataModel} from "../../data-models";
-import {SORTING_TYPES} from '../../constants';
+import {SORTING_TYPES, StatusCode} from '../../constants';
 
 const ActionType = {
   LOAD_OFFERS_DATA: `LOAD_OFFERS_DATA`,
@@ -8,6 +7,7 @@ const ActionType = {
   CHANGE_CURRENT_CITY: `CHANGE_CURRENT_CITY`,
   CHANGE_ACTIVE_OFFER: `CHANGE_ACTIVE_OFFER`,
   CHANGE_ACTIVE_SORTING_TYPE: `CHANGE_ACTIVE_SORTING_TYPE`,
+  SET_FAVORITES_DATA: `SET_FAVORITES_DATA`,
 };
 
 const initialState = {
@@ -16,10 +16,12 @@ const initialState = {
   activeOffer: null,
   activeSortingType: SORTING_TYPES[0],
   reviewsData: [],
+  favoritesData: [],
+  error: null,
 };
 
 const ActionCreator = {
-  loadOffersData: (offersDataKit) => ({
+  setOffersData: (offersDataKit) => ({
     type: ActionType.LOAD_OFFERS_DATA,
     payload: offersDataKit,
   }),
@@ -39,6 +41,10 @@ const ActionCreator = {
     type: ActionType.CHANGE_ACTIVE_SORTING_TYPE,
     payload: type,
   }),
+  setFavoritesData: (favoritesData) => ({
+    type: ActionType.SET_FAVORITES_DATA,
+    payload: favoritesData,
+  }),
 };
 
 const Operation = {
@@ -46,7 +52,7 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         const offersData = response.data.map((itData) => offerDataModel(itData));
-        dispatch(ActionCreator.loadOffersData(offersData));
+        dispatch(ActionCreator.setOffersData(offersData));
       });
   },
   loadReviewsData: (id) => (dispatch, _getState, api) => {
@@ -65,6 +71,31 @@ const Operation = {
           const reviewsData = response.data.map((itData) => reviewDataModel(itData));
           dispatch(ActionCreator.loadReviewsData(reviewsData));
         }
+      });
+  },
+  loadFavoritesData: () => (dispatch, _getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        const favoritesData = response.data.map((itData) => offerDataModel(itData));
+        dispatch(ActionCreator.setFavoritesData(favoritesData));
+      });
+  },
+
+  changeFavoriteStatus: (id, status) => (dispatch, _getState, api) => {
+    return api.post(`/favorite/${id}/${status}`)
+      .then((response) => {
+        const responseOfferData = offerDataModel(response.data);
+        const newOffersData = _getState().DATA.offersDataKit
+        .map((offer) => offer.id === responseOfferData.id
+          ? Object.assign({}, responseOfferData)
+          : offer
+        );
+
+        dispatch(ActionCreator.setOffersData(newOffersData));
+        dispatch(Operation.loadFavoritesData());
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.changeError(err));
       });
   },
 };
@@ -90,6 +121,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_ACTIVE_SORTING_TYPE:
       return Object.assign({}, state, {
         activeSortingType: action.payload,
+      });
+    case ActionType.SET_FAVORITES_DATA:
+      return Object.assign({}, state, {
+        favoritesData: action.payload,
       });
   }
   return state;

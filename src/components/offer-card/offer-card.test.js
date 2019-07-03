@@ -27,7 +27,7 @@ it(`Offer Card correctly renders with false markers`, () => {
             price={mock.price}
             rating={mock.rating}
             isPremium={!mock[`is_premium`]}
-            isBookmarked={!mock[`isBookmarked`]}
+            isFavorite={!mock[`is_favorite`]}
             onTitleClick={jest.fn()}
           />
         </MemoryRouter>
@@ -49,7 +49,7 @@ it(`Offer Card correctly renders with true markers`, () => {
             price={mock.price}
             rating={mock.rating}
             isPremium={mock[`is_premium`]}
-            isBookmarked={mock[`isBookmarked`]}
+            isFavorite={mock[`is_favorite`]}
             onTitleClick={jest.fn()}
           />
         </MemoryRouter>)
