@@ -5,7 +5,7 @@ import OfferCard from '../offer-card/offer-card';
 import {ActionCreator, Operation} from '../../reducer/data/data';
 
 const OffersList = (props) => {
-  const {offers, setActiveOffer, onReviewsDataLoaded, articleClassName} = props;
+  const {offers, setActiveOffer, changeFavoriteStatus, onReviewsDataLoaded, articleClassName} = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -19,6 +19,10 @@ const OffersList = (props) => {
           setActiveOffer(offer);
         };
 
+        const changeFavoriteOffer = () => {
+          changeFavoriteStatus(offer.id, offer.isFavorite ? 0 : 1);
+        };
+
         return (
           <OfferCard
             key={offer.id}
@@ -29,9 +33,11 @@ const OffersList = (props) => {
             price={offer.price}
             rating={offer.rating}
             isPremium={offer.isPremium}
+            isFavorite={offer.isFavorite}
             isBookmarked={offer.isBookmarked}
             onTitleClick={changeActiveOffer}
             onImageClick={chooseActiveOffer}
+            onButtonClick={changeFavoriteOffer}
             articleClassName={articleClassName}
           />);
       })}
@@ -42,6 +48,7 @@ const OffersList = (props) => {
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   setActiveOffer: PropTypes.func.isRequired,
+  changeFavoriteStatus: PropTypes.func,
   onReviewsDataLoaded: PropTypes.func.isRequired,
   articleClassName: PropTypes.string,
 };
@@ -52,6 +59,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setActiveOffer: (activeOffer) => {
     dispatch(ActionCreator.changeActiveOffer(activeOffer));
+  },
+  changeFavoriteStatus: (id, status) => {
+    dispatch(Operation.changeFavoriteStatus(id, status));
   },
 });
 

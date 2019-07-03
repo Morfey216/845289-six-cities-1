@@ -12,7 +12,7 @@ const mock = [
     price: 100,
     rating: 10,
     isPremium: false,
-    isBookmarked: false
+    isFavorite: false
   },
   {
     id: 1,
@@ -22,7 +22,7 @@ const mock = [
     price: 80,
     rating: 8,
     isPremium: true,
-    isBookmarked: true
+    isFavorite: true
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const mock = [
     price: 60,
     rating: 6,
     isPremium: true,
-    isBookmarked: false
+    isFavorite: false
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ const mock = [
     price: 40,
     rating: 4,
     isPremium: false,
-    isBookmarked: true
+    isFavorite: true
   },
 ];
 
