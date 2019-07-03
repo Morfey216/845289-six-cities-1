@@ -11,7 +11,7 @@ import configureAPI from './api';
 import App from './components/app/app';
 
 const init = () => {
-  const api = configureAPI();
+  const api = configureAPI((...args) => reducer.dispatch(...args));
   /* eslint-disable no-underscore-gangle */
   const store = createStore(
       reducer,
@@ -30,7 +30,7 @@ const init = () => {
           <App/>
         </BrowserRouter>
       </Provider>,
-      document.querySelector(`#root`).parentElement
+      document.querySelector(`#root`)
   );
 };
 
