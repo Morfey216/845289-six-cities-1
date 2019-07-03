@@ -130,6 +130,7 @@ OfferDetailed.propTypes = {
     goods: PropTypes.array.isRequired,
     host: PropTypes.object.isRequired,
     description: PropTypes.string.isRequired,
+
   }),
   nearOffersData: PropTypes.array,
   changeFavoriteStatus: PropTypes.func,
