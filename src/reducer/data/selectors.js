@@ -15,6 +15,19 @@ export const getCurrentCityIndex = (state) => {
   return state[NAME_SPACE].currentCityIndex;
 };
 
+export const getActiveOffer = (state) => {
+  return state[NAME_SPACE].activeOffer;
+};
+
+export const getActiveSortingType = (state) => {
+  return state[NAME_SPACE].activeSortingType;
+};
+
+export const getReviewsData = (state) => {
+  return state[NAME_SPACE].reviewsData
+    .sort((first, second) => (first.date < second.date) ? ComparisonResult.TRUE : ComparisonResult.FALSE);
+};
+
 export const getCitiesData = createSelector(
     getOffersDataKit,
     (offersData) => {
@@ -32,21 +45,28 @@ export const getCurrentOffersData = createSelector(
     getCurrentCityIndex,
     getCitiesData,
     getOffersDataKit,
-    (currentCityIndex, citiesData, offersData) => {
+    getActiveSortingType,
+    (currentCityIndex, citiesData, offersData, activeSortingType) => {
       const offers = offersData.filter((offer) => offer.city.name === citiesData[currentCityIndex].name);
+
+      switch (activeSortingType) {
+        case `Price: low to high`:
+          offers.sort((first, second) => first.price - second.price);
+          break;
+        case `Price: high to low`:
+          offers.sort((first, second) => second.price - first.price);
+          break;
+        case `Top rated first`:
+          offers.sort((first, second) => second.rating - first.rating);
+          break;
+        case `Popular`:
+        default:
+          offers.sort((first, second) => first.id - second.id);
+      }
 
       return offers;
     }
 );
-
-export const getActiveOffer = (state) => {
-  return state[NAME_SPACE].activeOffer;
-};
-
-export const getReviewsData = (state) => {
-  return state[NAME_SPACE].reviewsData
-    .sort((first, second) => (first.date < second.date) ? ComparisonResult.TRUE : ComparisonResult.FALSE);
-};
 
 export const getNearOffersData = createSelector(
     getCurrentOffersData,

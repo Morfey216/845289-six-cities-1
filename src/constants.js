@@ -9,3 +9,10 @@ export const RATING_MULTIPLIER = 10;
 export const MAX_PREVIEW_IMAGES = 6;
 export const MAX_REVIEWS_QUANTITY = 10;
 export const MAX_NEAR_OFFERS_QUANTITY = 3;
+
+export const SORTING_TYPES = [
+  `Popular`,
+  `Price: low to high`,
+  `Price: high to low`,
+  `Top rated first`,
+];
